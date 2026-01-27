@@ -5,10 +5,10 @@ const { Link } = ReactRouterDOM;
 
 export const About: React.FC = () => {
   return (
-    <div className="animate-fade-in pt-10 pb-20">
+    <div className="animate-fade-in pt-10 pb-20 w-full">
       
-      {/* Constrained Content Wrapper */}
-      <div className="max-w-5xl mx-auto">
+      {/* Content Wrapper - Increased max-width */}
+      <div className="max-w-[1400px] mx-auto">
         {/* Header Block */}
         <div className="mb-20">
            <div className="flex items-center gap-3 mb-8">
@@ -27,7 +27,7 @@ export const About: React.FC = () => {
           {/* Left Column: Key Statement (Sticky) */}
           <div className="lg:col-span-5">
              <div className="sticky top-32 space-y-8">
-                <p className="text-3xl text-white font-medium leading-tight">
+                <p className="text-3xl md:text-4xl text-white font-medium leading-tight">
                   "I don’t just use tech, I feel the tech."
                 </p>
                 <div className="w-12 h-1 bg-amber-500"></div>
@@ -38,7 +38,7 @@ export const About: React.FC = () => {
           </div>
 
           {/* Right Column: Detailed Bio */}
-          <div className="lg:col-span-7 space-y-10 text-lg text-zinc-400 leading-relaxed">
+          <div className="lg:col-span-7 space-y-10 text-lg md:text-xl text-zinc-400 leading-relaxed">
              <p>
                I’m <span className="text-white font-bold">Rishi</span>, an engineering student with a strong interest in product strategy, user behavior, and execution under real-world constraints.
              </p>
@@ -51,7 +51,7 @@ export const About: React.FC = () => {
                I’m comfortable analyzing ambiguity, asking the right questions, and breaking down complex problems into executable insights. I’m early in my journey, but highly hands-on and eager to learn in fast-moving startup environments where ownership, clarity, and impact matter.
              </p>
 
-             <div className="bg-zinc-900/50 border border-white/5 p-8 rounded-xl border-l-4 border-l-amber-500/50">
+             <div className="bg-zinc-900/50 border border-white/5 p-8 md:p-10 rounded-xl border-l-4 border-l-amber-500/50">
                <p className="font-medium text-white italic">
                  This portfolio reflects how I think and work—not just polished outcomes, but honest problem-solving.
                </p>
@@ -80,8 +80,8 @@ export const About: React.FC = () => {
       </div>
 
       {/* Expanded CV Section */}
-      <div className="mt-12">
-        <div className="bg-[#111] border border-white/5 rounded-3xl p-10 md:p-16 flex flex-col lg:flex-row items-center justify-between gap-12 relative overflow-hidden group">
+      <div className="mt-12 max-w-[1400px] mx-auto">
+        <div className="bg-[#111] border border-white/5 rounded-3xl p-10 md:p-16 flex flex-col xl:flex-row items-center justify-between gap-12 relative overflow-hidden group">
             
             {/* Decorative Elements */}
             <div className="absolute inset-0 bg-gradient-to-r from-amber-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
@@ -99,7 +99,7 @@ export const About: React.FC = () => {
               </p>
             </div>
 
-            <div className="relative z-10 flex flex-col sm:flex-row gap-4 w-full lg:w-auto shrink-0">
+            <div className="relative z-10 flex flex-col sm:flex-row gap-4 w-full xl:w-auto shrink-0">
               <Link 
                 to="/resume" 
                 className="px-8 py-5 bg-zinc-900 border border-white/10 rounded-xl text-base font-bold text-white hover:bg-zinc-800 hover:border-white/20 transition-all text-center flex items-center justify-center gap-3"

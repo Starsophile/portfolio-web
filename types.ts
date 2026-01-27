@@ -34,4 +34,10 @@ export interface Project {
   sections: ProjectSection[];
   dashboardId?: DashboardId;
   keyLearnings: string[];
+  heroVisual?: {
+    displayText: string;
+    subText: string;
+    gradientFrom: string;
+    gradientTo: string;
+  };
 }

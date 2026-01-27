@@ -9,6 +9,12 @@ export const projects: Project[] = [
     date: 'Jan 2026',
     tags: ['Market Strategy', 'Product Portfolio', 'India Market', 'Analysis'],
     summary: 'Samsung is trusted, but its mid-range lineup (A, M, F series) suffers from confusing positioning and spec-sheet dilution. This project proposes a constraint-aware restructuring to halt market share decline (24% to 17%) without damaging retail margins.',
+    heroVisual: {
+        displayText: 'SAMSUNG',
+        subText: 'Portfolio Restructuring',
+        gradientFrom: 'from-blue-900/20',
+        gradientTo: 'to-zinc-900/20'
+    },
     sections: [
       {
         title: '01. Market Context',
@@ -85,6 +91,12 @@ export const projects: Project[] = [
     date: 'Dec 2025',
     tags: ['Supply Chain', 'Consumer Trust', 'Product Strategy', 'Crisis Management'],
     summary: 'Global semiconductor and component shortages (RAM, storage, chips) have forced smartphone brands into a difficult corner: raise prices or silently downgrade hardware. This analysis explores how to navigate these trade-offs without breaking consumer trust.',
+    heroVisual: {
+        displayText: 'CRISIS',
+        subText: 'Supply vs Demand',
+        gradientFrom: 'from-orange-900/20',
+        gradientTo: 'to-red-900/20'
+    },
     sections: [
       {
         title: '01. The Context',
@@ -136,6 +148,12 @@ export const projects: Project[] = [
     tags: ['User Research', 'Data Analysis', 'Consumer Behavior', 'India Market'],
     dashboardId: DashboardId.SMARTPHONE_SURVEY,
     summary: 'To understand the disconnect between what brands market and what users actually buy, I conducted a survey of ~100 Indian smartphone users. The goal: decode the "Value for Money" equation beyond the spec sheet.',
+    heroVisual: {
+        displayText: 'INSIGHTS',
+        subText: '100+ User Study',
+        gradientFrom: 'from-emerald-900/20',
+        gradientTo: 'to-teal-900/20'
+    },
     sections: [
       {
         title: '01. Intent & Methodology',
