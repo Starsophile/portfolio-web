@@ -6,10 +6,15 @@ const { Link, useLocation } = ReactRouterDOM;
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();
   const [isVisible, setIsVisible] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const lastScrollY = useRef(0);
 
+  // Handle scroll to hide/show header
   useEffect(() => {
     const handleScroll = () => {
+      // Don't hide header if mobile menu is open
+      if (isMenuOpen) return;
+
       const currentScrollY = window.scrollY;
       
       // Always show at the very top to avoid getting stuck in hidden state near top
@@ -34,19 +39,36 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [isMenuOpen]);
+
+  // Lock scroll when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMenuOpen]);
+
+  // Close menu on route change
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen flex flex-col bg-[#050505] text-zinc-100 selection:bg-amber-500/30 relative overflow-x-hidden font-sans">
       
       {/* Top Header - Intelligent Hide/Show on Scroll */}
       <header 
-        className={`fixed top-0 w-full z-50 px-6 py-6 pointer-events-none transition-transform duration-300 ease-in-out ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}
+        className={`fixed top-0 w-full z-50 px-6 py-6 pointer-events-none transition-transform duration-300 ease-in-out ${isVisible || isMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}
       >
         <div className="pointer-events-auto w-full max-w-[1800px] mx-auto flex items-center justify-between">
           
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
+          <Link to="/" className="flex items-center gap-2 group z-[60]">
              <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-black">
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
              </div>
@@ -54,22 +76,76 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
           </Link>
 
           {/* Right Nav Actions */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4 md:gap-6">
+            {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-6 text-sm font-medium bg-black/50 backdrop-blur-md px-6 py-2 rounded-full border border-white/5">
               <Link to="/" className={`hover:text-amber-400 transition-colors ${location.pathname === '/' ? 'text-white' : 'text-zinc-400'}`}>Home</Link>
               <Link to="/projects" className={`hover:text-amber-400 transition-colors ${location.pathname.startsWith('/projects') ? 'text-white' : 'text-zinc-400'}`}>Work</Link>
               <Link to="/about" className={`hover:text-amber-400 transition-colors ${location.pathname === '/about' ? 'text-white' : 'text-zinc-400'}`}>About</Link>
             </nav>
             
-            <div className="flex items-center gap-3">
-              <a href="mailto:contact@starsophile.qzz.io" className="flex items-center gap-2 text-sm font-bold bg-white text-black px-5 py-2.5 rounded-full hover:bg-amber-400 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+            <div className="flex items-center gap-2 md:gap-3">
+              <a href="mailto:contact@starsophile.qzz.io" className="hidden sm:flex items-center gap-2 text-sm font-bold bg-white text-black px-5 py-2.5 rounded-full hover:bg-amber-400 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.2)]">
                 Let's Talk
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" /></svg>
               </a>
+
+              {/* Mobile Menu Toggle */}
+              <button 
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="flex md:hidden items-center justify-center w-11 h-11 rounded-full bg-white/5 border border-white/10 text-white z-[60] backdrop-blur-md"
+                aria-label="Toggle Menu"
+              >
+                {isMenuOpen ? (
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                ) : (
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
+                )}
+              </button>
             </div>
           </div>
         </div>
       </header>
+
+      {/* Mobile Menu Overlay */}
+      <div className={`fixed inset-0 z-[55] md:hidden transition-all duration-500 overflow-hidden ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+        <div className={`absolute inset-0 bg-[#050505] transition-transform duration-500 ease-custom ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'}`} />
+        
+        <div className="relative h-full flex flex-col justify-center px-10 py-20">
+          <nav className="flex flex-col gap-6">
+            <Link 
+              to="/" 
+              className={`text-5xl font-bold font-['Syne'] transition-all duration-300 ${location.pathname === '/' ? 'text-amber-400' : 'text-white hover:translate-x-4'}`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              HOME
+            </Link>
+            <Link 
+              to="/projects" 
+              className={`text-5xl font-bold font-['Syne'] transition-all duration-300 ${location.pathname.startsWith('/projects') ? 'text-amber-400' : 'text-white hover:translate-x-4'}`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              WORK
+            </Link>
+            <Link 
+              to="/about" 
+              className={`text-5xl font-bold font-['Syne'] transition-all duration-300 ${location.pathname === '/about' ? 'text-amber-400' : 'text-white hover:translate-x-4'}`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              ABOUT
+            </Link>
+          </nav>
+
+          <div className="mt-20 pt-10 border-t border-white/10">
+            <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-6">Contact</p>
+            <a href="mailto:contact@starsophile.qzz.io" className="text-xl font-medium text-white block mb-4">contact@starsophile.qzz.io</a>
+            <div className="flex gap-6 mt-8">
+              <a href="https://www.linkedin.com/in/rishiparmar01/" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white transition-colors">LinkedIn</a>
+              <a href="https://www.instagram.com/starsophile/" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white transition-colors">Instagram</a>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <main className="relative z-10 flex-1 w-full max-w-[1800px] mx-auto px-6 md:px-12 pt-32 pb-24">
         {children}
