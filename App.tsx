@@ -5,9 +5,17 @@ import { Landing } from './pages/Landing';
 import { Projects } from './pages/Projects';
 import { ProjectDetail } from './pages/ProjectDetail';
 import { About } from './pages/About';
-import { Resume } from './pages/Resume';
+
 
 const { HashRouter, Routes, Route, Navigate, useLocation } = ReactRouterDOM;
+
+const ResumeRedirect: React.FC = () => {
+  useEffect(() => {
+    window.open('/assets/Rishi_CV.pdf', '_blank');
+    window.history.back();
+  }, []);
+  return null;
+};
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -29,7 +37,7 @@ const App: React.FC = () => {
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:id" element={<ProjectDetail />} />
           <Route path="/about" element={<About />} />
-          <Route path="/resume" element={<Resume />} />
+          <Route path="/resume" element={<ResumeRedirect />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Layout>

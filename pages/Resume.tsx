@@ -11,32 +11,32 @@ export const Resume: React.FC = () => {
   return (
     <div className="bg-white min-h-screen text-black font-sans selection:bg-amber-200">
       {/* Navigation / Actions Bar (Hidden when printing) */}
-      <div className="print:hidden fixed top-0 w-full bg-zinc-900 border-b border-white/10 p-4 z-50 flex justify-between items-center">
-        <Link to="/about" className="text-zinc-400 hover:text-white text-sm font-bold flex items-center gap-2">
+      <div className="print:hidden fixed top-0 w-full bg-zinc-900 border-b border-white/10 px-4 py-3 sm:py-4 z-50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+        <Link to="/about" className="text-zinc-400 hover:text-white text-sm font-bold flex items-center gap-2 shrink-0">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
           Back to Portfolio
         </Link>
-        <div className="flex gap-4">
-           <a 
-            href="/assets/cv.pdf" 
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
+          <a
+            href="/assets/cv.pdf"
             download="Rishi_CV.pdf"
             className="text-zinc-400 hover:text-white text-sm font-bold flex items-center gap-2"
-           >
-             Download Original PDF
-           </a>
-           <button 
-             onClick={handlePrint}
-             className="bg-amber-500 hover:bg-amber-400 text-black px-6 py-2 rounded-full font-bold text-sm transition-colors flex items-center gap-2"
-           >
-             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" /></svg>
-             Print Web Version
-           </button>
+          >
+            Download Original PDF
+          </a>
+          <button
+            onClick={handlePrint}
+            className="bg-amber-500 hover:bg-amber-400 text-black px-6 py-2 rounded-full font-bold text-sm transition-colors flex items-center gap-2 whitespace-nowrap"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" /></svg>
+            Print Web Version
+          </button>
         </div>
       </div>
 
       {/* Resume Content */}
       <div className="max-w-[21cm] mx-auto bg-white pt-32 pb-20 px-12 md:px-16 print:p-0 print:max-w-none">
-        
+
         {/* Header */}
         <header className="border-b-2 border-black pb-8 mb-12 flex justify-between items-end">
           <div>
@@ -72,7 +72,7 @@ export const Resume: React.FC = () => {
         {/* Product & Research Projects */}
         <section className="mb-12">
           <h2 className="text-xs font-black uppercase tracking-widest border-b border-zinc-200 pb-2 mb-6">Product & Research Projects</h2>
-          
+
           <div className="mb-8">
             <h3 className="font-bold text-lg mb-2">Samsung Smartphone Experience Revamp (Independent Project)</h3>
             <ul className="list-disc list-outside ml-4 space-y-1.5 text-sm text-zinc-800 leading-relaxed">
@@ -119,11 +119,11 @@ export const Resume: React.FC = () => {
           <div>
             <h2 className="text-xs font-black uppercase tracking-widest border-b border-zinc-200 pb-2 mb-4">Interests</h2>
             <div className="flex flex-wrap gap-2">
-                <span className="text-sm text-zinc-800">Product Strategy •</span>
-                <span className="text-sm text-zinc-800">Consumer Technology •</span>
-                <span className="text-sm text-zinc-800">AI & Product Systems •</span>
-                <span className="text-sm text-zinc-800">Cricket •</span>
-                <span className="text-sm text-zinc-800">Public Speaking</span>
+              <span className="text-sm text-zinc-800">Product Strategy •</span>
+              <span className="text-sm text-zinc-800">Consumer Technology •</span>
+              <span className="text-sm text-zinc-800">AI & Product Systems •</span>
+              <span className="text-sm text-zinc-800">Cricket •</span>
+              <span className="text-sm text-zinc-800">Public Speaking</span>
             </div>
           </div>
         </section>

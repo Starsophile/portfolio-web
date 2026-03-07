@@ -43,21 +43,56 @@ export const Landing: React.FC = () => {
                </h1>
 
                <p className="text-xl md:text-3xl text-zinc-300 max-w-2xl leading-relaxed font-normal">
-                  Product Research & Strategist. <br className="hidden md:block" />
+                  I Audit Products. Not Just Review Them. <br className="hidden md:block" />
                   <span className="text-zinc-400 text-lg md:text-xl mt-4 block leading-relaxed">
-                     I explore how products fail, scale, and earn user trust through real-world constraints.
+                     I explore how products fail, scale, and earn user trust — through real-world constraints, not spec sheets.
                   </span>
                </p>
             </div>
 
-            {/* Hero Visual */}
+            {/* Hero Visual - Geometric SVG */}
             <div className="relative w-full max-w-xl lg:max-w-2xl h-[500px] lg:h-[700px] flex items-center justify-center flex-1">
-               {/* The "Blob" Background */}
-               <div className="absolute inset-0 bg-[#ffaa00] rounded-[40%_60%_70%_30%/40%_50%_60%_50%] blur-[100px] opacity-20 animate-pulse"></div>
-               <div className="absolute inset-0 bg-gradient-to-tr from-amber-500 to-orange-600 rounded-[30%_70%_70%_30%/30%_30%_70%_70%] opacity-90 transition-all duration-1000 hover:rotate-12"></div>
+               <svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full" aria-hidden="true">
+                  {/* Grid lines */}
+                  {[100, 150, 200, 250, 300, 350, 400].map(v => (
+                     <React.Fragment key={`grid-${v}`}>
+                        <line x1={v} y1="80" x2={v} y2="420" stroke="#ffaa00" strokeOpacity="0.07" strokeWidth="0.5" />
+                        <line x1="80" y1={v} x2="420" y2={v} stroke="#ffaa00" strokeOpacity="0.07" strokeWidth="0.5" />
+                     </React.Fragment>
+                  ))}
 
-               {/* Abstract visual mask */}
-               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[95%] h-[95%] bg-[url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2670&auto=format&fit=crop')] bg-cover bg-center grayscale mix-blend-multiply opacity-60 rounded-[30%_70%_70%_30%/30%_30%_70%_70%] shadow-2xl"></div>
+                  {/* Concentric circles */}
+                  {[60, 100, 140, 180].map(r => (
+                     <circle key={`circle-${r}`} cx="250" cy="250" r={r} stroke="#ffaa00" strokeOpacity="0.12" strokeWidth="0.75" />
+                  ))}
+
+                  {/* Center dot */}
+                  <circle cx="250" cy="250" r="3" fill="#ffaa00" fillOpacity="0.5" />
+
+                  {/* Diamond shape */}
+                  <path d="M250 120 L380 250 L250 380 L120 250 Z" stroke="#ffaa00" strokeOpacity="0.15" strokeWidth="1" />
+
+                  {/* Corner brackets — top-left */}
+                  <path d="M100 130 L100 100 L130 100" stroke="#ffaa00" strokeOpacity="0.25" strokeWidth="1.5" strokeLinecap="round" />
+                  {/* Corner brackets — top-right */}
+                  <path d="M370 100 L400 100 L400 130" stroke="#ffaa00" strokeOpacity="0.25" strokeWidth="1.5" strokeLinecap="round" />
+                  {/* Corner brackets — bottom-right */}
+                  <path d="M400 370 L400 400 L370 400" stroke="#ffaa00" strokeOpacity="0.25" strokeWidth="1.5" strokeLinecap="round" />
+                  {/* Corner brackets — bottom-left */}
+                  <path d="M130 400 L100 400 L100 370" stroke="#ffaa00" strokeOpacity="0.25" strokeWidth="1.5" strokeLinecap="round" />
+
+                  {/* Crosshair lines through center */}
+                  <line x1="250" y1="80" x2="250" y2="420" stroke="#ffaa00" strokeOpacity="0.1" strokeWidth="0.75" strokeDasharray="4 6" />
+                  <line x1="80" y1="250" x2="420" y2="250" stroke="#ffaa00" strokeOpacity="0.1" strokeWidth="0.75" strokeDasharray="4 6" />
+
+                  {/* Small accent marks on axes */}
+                  {[150, 200, 300, 350].map(p => (
+                     <React.Fragment key={`tick-${p}`}>
+                        <line x1={p} y1="247" x2={p} y2="253" stroke="#ffaa00" strokeOpacity="0.2" strokeWidth="1" />
+                        <line x1="247" y1={p} x2="253" y2={p} stroke="#ffaa00" strokeOpacity="0.2" strokeWidth="1" />
+                     </React.Fragment>
+                  ))}
+               </svg>
             </div>
          </section>
 
@@ -92,8 +127,8 @@ export const Landing: React.FC = () => {
                      delay="delay-200"
                   />
                   <SpecialtyCard
-                     title="Growth Modeling"
-                     icon={<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" /></svg>}
+                     title="Consumer Behaviour"
+                     icon={<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg>}
                      delay="delay-300"
                   />
                </div>
