@@ -1,198 +1,371 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import * as ReactRouterDOM from 'react-router-dom';
 
 const { Link, useLocation } = ReactRouterDOM;
 
+const MENU_LINKS = [
+  { to: '/', label: 'Home', anchor: '#home' },
+  { to: '/projects', label: 'Works', anchor: '#work' },
+  { to: '/about', label: 'About', anchor: null },
+];
+
+const NAV_ANCHORS = [
+  { anchor: '#home', label: 'Home' },
+  { anchor: '#experience', label: 'Experience' },
+  { anchor: '#approach', label: 'Services' },
+  { anchor: '#work', label: 'Works' },
+  { anchor: '#insights', label: 'Insights' },
+  { anchor: '#contact', label: 'Contact' },
+];
+
+const SOCIAL_LINKS = [
+  { href: 'https://www.linkedin.com/in/rishiparmar01/', label: 'LinkedIn', icon: 'Li' },
+  { href: 'https://www.instagram.com/starsophile/', label: 'Instagram', icon: 'Ig' },
+  { href: 'mailto:01rishiparmar@gmail.com', label: 'Email', icon: '✉' },
+];
+
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();
-  const [isVisible, setIsVisible] = useState(true);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const lastScrollY = useRef(0);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [currentTime, setCurrentTime] = useState(new Date());
 
-  // Handle scroll to hide/show header
+  const isHome = location.pathname === '/';
+
   useEffect(() => {
-    const handleScroll = () => {
-      // Don't hide header if mobile menu is open
-      if (isMenuOpen) return;
+    document.body.style.overflow = sidebarOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [sidebarOpen]);
 
-      const currentScrollY = window.scrollY;
-      
-      // Always show at the very top to avoid getting stuck in hidden state near top
-      if (currentScrollY < 10) {
-        setIsVisible(true);
-        lastScrollY.current = currentScrollY;
-        return;
-      }
+  useEffect(() => { setSidebarOpen(false); }, [location.pathname]);
 
-      // Hide when scrolling down, show when scrolling up
-      if (currentScrollY > lastScrollY.current) {
-        setIsVisible(false);
-      } else {
-        setIsVisible(true);
-      }
-      
-      lastScrollY.current = currentScrollY;
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [isMenuOpen]);
-
-  // Lock scroll when mobile menu is open
+  // Live clock
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isMenuOpen]);
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
 
-  // Close menu on route change
-  useEffect(() => {
-    setIsMenuOpen(false);
+  const isActive = useCallback((to: string) => {
+    if (to === '/projects') return location.pathname.startsWith('/projects');
+    return location.pathname === to;
   }, [location.pathname]);
 
+  const handleAnchorClick = (anchor: string) => {
+    setSidebarOpen(false);
+    if (isHome) {
+      const el = document.querySelector(anchor);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.location.hash = '/' + anchor;
+    }
+  };
+
+  const formatTime = (d: Date) => {
+    return d.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  };
+
   return (
-    <div className="min-h-screen flex flex-col bg-[#050505] text-zinc-100 selection:bg-amber-500/30 relative overflow-x-hidden font-sans">
-      
-      {/* Top Header - Intelligent Hide/Show on Scroll */}
-      <header 
-        className={`fixed top-0 w-full z-50 px-6 py-6 pointer-events-none transition-transform duration-300 ease-in-out ${isVisible || isMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}
-      >
-        <div className="pointer-events-auto w-full max-w-[1800px] mx-auto flex items-center justify-between">
-          
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group z-[60]">
-             <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-black">
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-             </div>
-             <span className="text-xl font-bold font-['Syne'] uppercase tracking-wider text-white">RISHI</span>
+    <div style={{ backgroundColor: '#000', color: '#fff', minHeight: '100vh' }} className="flex flex-col relative">
+
+      {/* ╔══════════════════════════════════════════╗
+         ║  FLOATING PILL NAVBAR                    ║
+         ╚══════════════════════════════════════════╝ */}
+      <header className="fixed top-0 left-0 right-0 z-[80] px-4 md:px-6 pt-4">
+        <div
+          className="max-w-[1400px] mx-auto flex items-center justify-between px-6 md:px-8 py-3"
+          style={{
+            backgroundColor: 'rgba(17,17,17,0.85)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            border: '1px solid rgba(255,255,255,0.06)',
+            borderRadius: '999px',
+          }}
+        >
+          {/* Left — Location indicator */}
+          <div className="hidden md:flex items-center gap-2 text-sm" style={{ color: '#888' }}>
+            <span className="w-2 h-2 rounded-full pulse-dot" style={{ backgroundColor: '#CCFF00' }} />
+            <span>India</span>
+          </div>
+
+          {/* Center — Logo */}
+          <Link to="/" className="flex items-center gap-2.5 font-display font-bold text-lg tracking-wide z-[90]">
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="3" fill="#CCFF00" />
+              {[0, 45, 90, 135, 180, 225, 270, 315].map(angle => {
+                const rad = (angle * Math.PI) / 180;
+                const x1 = 12 + Math.cos(rad) * 5.5;
+                const y1 = 12 + Math.sin(rad) * 5.5;
+                const x2 = 12 + Math.cos(rad) * 9;
+                const y2 = 12 + Math.sin(rad) * 9;
+                return <line key={angle} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#CCFF00" strokeWidth="2" strokeLinecap="round" />;
+              })}
+            </svg>
+            <span style={{ color: '#fff' }}>Rishi</span>
           </Link>
 
-          {/* Right Nav Actions */}
-          <div className="flex items-center gap-4 md:gap-6">
-            {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center gap-6 text-sm font-medium bg-black/50 backdrop-blur-md px-6 py-2 rounded-full border border-white/5">
-              <Link to="/" className={`hover:text-amber-400 transition-colors ${location.pathname === '/' ? 'text-white' : 'text-zinc-400'}`}>Home</Link>
-              <Link to="/projects" className={`hover:text-amber-400 transition-colors ${location.pathname.startsWith('/projects') ? 'text-white' : 'text-zinc-400'}`}>Work</Link>
-              <Link to="/about" className={`hover:text-amber-400 transition-colors ${location.pathname === '/about' ? 'text-white' : 'text-zinc-400'}`}>About</Link>
-            </nav>
-            
-            <div className="flex items-center gap-2 md:gap-3">
-              <a href="mailto:contact@starsophile.qzz.io" className="hidden sm:flex items-center gap-2 text-sm font-bold bg-white text-black px-5 py-2.5 rounded-full hover:bg-amber-400 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.2)]">
-                Let's Talk
-                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" /></svg>
-              </a>
-
-              {/* Mobile Menu Toggle */}
-              <button 
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="flex md:hidden items-center justify-center w-11 h-11 rounded-full bg-white/5 border border-white/10 text-white z-[60] backdrop-blur-md"
-                aria-label="Toggle Menu"
-              >
-                {isMenuOpen ? (
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-                ) : (
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
-                )}
-              </button>
-            </div>
-          </div>
+          {/* Right — Grid menu button */}
+          <button
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-200 z-[90]"
+            style={{
+              backgroundColor: sidebarOpen ? '#CCFF00' : '#fff',
+              color: '#000',
+            }}
+            aria-label="Toggle menu"
+            id="nav-menu-btn"
+          >
+            {sidebarOpen ? (
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-4 h-4" viewBox="0 0 16 16" fill="currentColor">
+                <rect x="0" y="0" width="4" height="4" rx="1" />
+                <rect x="6" y="0" width="4" height="4" rx="1" />
+                <rect x="12" y="0" width="4" height="4" rx="1" />
+                <rect x="0" y="6" width="4" height="4" rx="1" />
+                <rect x="6" y="6" width="4" height="4" rx="1" />
+                <rect x="12" y="6" width="4" height="4" rx="1" />
+                <rect x="0" y="12" width="4" height="4" rx="1" />
+                <rect x="6" y="12" width="4" height="4" rx="1" />
+                <rect x="12" y="12" width="4" height="4" rx="1" />
+              </svg>
+            )}
+          </button>
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 z-[55] md:hidden transition-all duration-500 overflow-hidden ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-        <div className={`absolute inset-0 bg-[#050505] transition-transform duration-500 ease-custom ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'}`} />
-        
-        <div className="relative h-full flex flex-col justify-center px-10 py-20">
-          <nav className="flex flex-col gap-6">
-            <Link 
-              to="/" 
-              className={`text-5xl font-bold font-['Syne'] transition-all duration-300 ${location.pathname === '/' ? 'text-amber-400' : 'text-white hover:translate-x-4'}`}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              HOME
-            </Link>
-            <Link 
-              to="/projects" 
-              className={`text-5xl font-bold font-['Syne'] transition-all duration-300 ${location.pathname.startsWith('/projects') ? 'text-amber-400' : 'text-white hover:translate-x-4'}`}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              WORK
-            </Link>
-            <Link 
-              to="/about" 
-              className={`text-5xl font-bold font-['Syne'] transition-all duration-300 ${location.pathname === '/about' ? 'text-amber-400' : 'text-white hover:translate-x-4'}`}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              ABOUT
-            </Link>
-          </nav>
+      {/* ╔══════════════════════════════════════════╗
+         ║  SIDEBAR OVERLAY                         ║
+         ╚══════════════════════════════════════════╝ */}
+      {sidebarOpen && (
+        <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 z-[82]"
+            style={{ backgroundColor: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)' }}
+            onClick={() => setSidebarOpen(false)}
+          />
+          {/* Sidebar panel */}
+          <div
+            className="fixed top-0 right-0 bottom-0 z-[85] w-full max-w-[480px] overflow-y-auto sidebar-enter"
+            style={{
+              backgroundColor: '#111',
+              borderLeft: '1px solid rgba(255,255,255,0.06)',
+              borderTopLeftRadius: '32px',
+              borderBottomLeftRadius: '32px',
+            }}
+          >
+            <div className="flex flex-col h-full px-10 pt-28 pb-10">
+              {/* Menu label */}
+              <div className="flex items-center gap-2 mb-8">
+                <span className="w-2 h-2 rounded-full" style={{ backgroundColor: '#CCFF00' }} />
+                <span className="text-sm font-semibold" style={{ color: '#888' }}>Menu</span>
+              </div>
 
-          <div className="mt-20 pt-10 border-t border-white/10">
-            <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-6">Contact</p>
-            <a href="mailto:contact@starsophile.qzz.io" className="text-xl font-medium text-white block mb-4">contact@starsophile.qzz.io</a>
-            <div className="flex gap-6 mt-8">
-              <a href="https://www.linkedin.com/in/rishiparmar01/" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white transition-colors">LinkedIn</a>
-              <a href="https://www.instagram.com/starsophile/" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white transition-colors">Instagram</a>
+              {/* Nav links — anchor-based when on home page */}
+              <nav className="flex flex-col gap-1 mb-8">
+                {isHome ? (
+                  NAV_ANCHORS.map(link => (
+                    <button
+                      key={link.anchor}
+                      onClick={() => handleAnchorClick(link.anchor)}
+                      className="flex items-center gap-4 py-4 px-4 rounded-2xl transition-all duration-200 text-left"
+                      style={{ color: '#fff', backgroundColor: 'transparent' }}
+                      onMouseEnter={e => { e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.04)'; e.currentTarget.style.color = '#CCFF00'; }}
+                      onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = '#fff'; }}
+                    >
+                      <span className="text-2xl font-bold font-display">{link.label}</span>
+                    </button>
+                  ))
+                ) : (
+                  MENU_LINKS.map(link => (
+                    <Link
+                      key={link.to}
+                      to={link.to}
+                      onClick={() => setSidebarOpen(false)}
+                      className="flex items-center gap-4 py-4 px-4 rounded-2xl transition-all duration-200"
+                      style={{
+                        backgroundColor: isActive(link.to) ? 'rgba(204,255,0,0.06)' : 'transparent',
+                        color: isActive(link.to) ? '#CCFF00' : '#fff',
+                      }}
+                      onMouseEnter={e => {
+                        if (!isActive(link.to)) {
+                          e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.04)';
+                        }
+                      }}
+                      onMouseLeave={e => {
+                        if (!isActive(link.to)) {
+                          e.currentTarget.style.backgroundColor = 'transparent';
+                        }
+                      }}
+                    >
+                      <span className="text-2xl font-bold font-display">{link.label}</span>
+                    </Link>
+                  ))
+                )}
+              </nav>
+
+              {/* About link when on home */}
+              {isHome && (
+                <Link
+                  to="/about"
+                  onClick={() => setSidebarOpen(false)}
+                  className="flex items-center gap-4 py-4 px-4 rounded-2xl transition-all duration-200 mb-8"
+                  style={{ color: '#fff', backgroundColor: 'transparent' }}
+                  onMouseEnter={e => { e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.04)'; e.currentTarget.style.color = '#CCFF00'; }}
+                  onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = '#fff'; }}
+                >
+                  <span className="text-2xl font-bold font-display">About</span>
+                </Link>
+              )}
+
+              {/* Social links */}
+              <div className="mt-auto">
+                <div className="flex items-center gap-2 mb-6">
+                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: '#CCFF00' }} />
+                  <span className="text-sm font-semibold" style={{ color: '#888' }}>Social Network</span>
+                </div>
+                <div className="flex gap-3">
+                  {SOCIAL_LINKS.map(s => (
+                    <a
+                      key={s.label}
+                      href={s.href}
+                      target={s.href.startsWith('mailto') ? undefined : '_blank'}
+                      rel="noopener noreferrer"
+                      className="w-11 h-11 rounded-full flex items-center justify-center text-sm font-medium transition-colors duration-200"
+                      style={{ backgroundColor: 'rgba(255,255,255,0.06)', color: '#fff' }}
+                      onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#CCFF00'; e.currentTarget.style.color = '#000'; }}
+                      onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = '#fff'; }}
+                    >
+                      {s.label.charAt(0)}
+                    </a>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </>
+      )}
+
+      {/* ╔══════════════════════════════════════════╗
+         ║  FLOATING SOCIAL ICONS (desktop only)    ║
+         ╚══════════════════════════════════════════╝ */}
+      <div className="social-float">
+        {SOCIAL_LINKS.filter(s => !s.href.startsWith('mailto')).map(s => (
+          <a
+            key={s.label}
+            href={s.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-10 h-10 rounded-full flex items-center justify-center text-xs font-medium transition-all duration-200"
+            style={{ backgroundColor: 'rgba(255,255,255,0.06)', color: '#888', border: '1px solid rgba(255,255,255,0.06)' }}
+            onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#CCFF00'; e.currentTarget.style.color = '#000'; e.currentTarget.style.borderColor = '#CCFF00'; }}
+            onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = '#888'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'; }}
+            title={s.label}
+          >
+            {s.icon}
+          </a>
+        ))}
       </div>
 
-      <main className="relative z-10 flex-1 w-full max-w-[1800px] mx-auto px-6 md:px-12 pt-32 pb-24">
+      {/* ╔══════════════════════════════════════════╗
+         ║  MAIN CONTENT                            ║
+         ╚══════════════════════════════════════════╝ */}
+      <main className="relative z-10 flex-1 w-full">
         {children}
       </main>
 
-      {/* Footer - Redesigned for better spacing */}
-      <footer className="relative z-10 bg-[#0a0a0a] border-t border-white/5 py-24 md:py-32">
-        <div className="w-full max-w-[1800px] mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-16 lg:gap-32 items-end">
-             <div className="max-w-2xl">
-                <h2 className="text-6xl md:text-8xl font-bold font-['Syne'] text-white mb-8 leading-[0.9]">
-                  Let's work <br/> 
-                  <span className="text-amber-400">together</span>
-                </h2>
-                <p className="text-zinc-400 text-lg md:text-xl max-w-lg leading-relaxed">
-                  Open for collaborations, product strategy roles, and interesting conversations about tech.
-                </p>
-             </div>
-             
-             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
-                <a href="mailto:contact@starsophile.qzz.io" className="bg-[#111] border border-white/10 p-8 md:p-12 rounded-2xl group hover:border-amber-500/50 hover:bg-[#161616] transition-all cursor-pointer flex flex-col justify-between min-h-[240px]">
-                   <div className="flex justify-between items-start mb-8">
-                      <div className="w-12 h-12 rounded-full bg-zinc-900 flex items-center justify-center text-white group-hover:bg-amber-500 group-hover:text-black transition-colors">
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
-                      </div>
-                      <svg className="w-6 h-6 text-zinc-500 group-hover:text-amber-500 group-hover:-translate-y-1 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" /></svg>
-                   </div>
-                   <div>
-                       <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-2">Drop an email</p>
-                       <span className="text-xl md:text-2xl font-bold text-white group-hover:text-amber-400">contact@starsophile.qzz.io</span>
-                   </div>
-                </a>
+      {/* ╔══════════════════════════════════════════╗
+         ║  FOOTER                                  ║
+         ╚══════════════════════════════════════════╝ */}
+      <footer className="relative z-10 border-t overflow-hidden" style={{ backgroundColor: '#0a0a0a', borderColor: 'rgba(255,255,255,0.06)' }}>
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-16 md:py-24">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 mb-16">
 
-                <a href="https://www.linkedin.com/in/rishiparmar01/" target="_blank" rel="noopener noreferrer" className="bg-[#111] border border-white/10 p-8 md:p-12 rounded-2xl group hover:border-amber-500/50 hover:bg-[#161616] transition-all cursor-pointer flex flex-col justify-between min-h-[240px]">
-                   <div className="flex justify-between items-start mb-8">
-                      <div className="w-12 h-12 rounded-full bg-zinc-900 flex items-center justify-center text-white group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                      </div>
-                      <svg className="w-6 h-6 text-zinc-500 group-hover:text-amber-500 group-hover:-translate-y-1 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" /></svg>
-                   </div>
-                   <div>
-                       <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-2">Connect on LinkedIn</p>
-                       <span className="text-xl md:text-2xl font-bold text-white group-hover:text-amber-400">Rishi Parmar</span>
-                   </div>
-                </a>
-             </div>
+            {/* Col 1 — Connect */}
+            <div>
+              <h4 className="text-sm font-semibold mb-6" style={{ color: '#888' }}>Let's Connect</h4>
+              <a
+                href="mailto:01rishiparmar@gmail.com"
+                className="text-lg font-medium transition-colors duration-200 block"
+                style={{ color: '#fff' }}
+                onMouseEnter={e => (e.currentTarget.style.color = '#CCFF00')}
+                onMouseLeave={e => (e.currentTarget.style.color = '#fff')}
+              >
+                01rishiparmar@gmail.com
+              </a>
+            </div>
+
+            {/* Col 2 — Menu */}
+            <div>
+              <h4 className="text-sm font-semibold mb-6" style={{ color: '#888' }}>Menu</h4>
+              <div className="flex flex-col gap-3">
+                {MENU_LINKS.map(l => (
+                  <Link
+                    key={l.to}
+                    to={l.to}
+                    className="text-sm transition-colors duration-200"
+                    style={{ color: '#fff' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = '#CCFF00')}
+                    onMouseLeave={e => (e.currentTarget.style.color = '#fff')}
+                  >
+                    {l.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Col 3 — Socials */}
+            <div>
+              <h4 className="text-sm font-semibold mb-6" style={{ color: '#888' }}>Socials</h4>
+              <div className="flex flex-col gap-3">
+                {SOCIAL_LINKS.filter(s => !s.href.startsWith('mailto')).map(s => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm transition-colors duration-200"
+                    style={{ color: '#fff' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = '#CCFF00')}
+                    onMouseLeave={e => (e.currentTarget.style.color = '#fff')}
+                  >
+                    {s.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Col 4 — Local Time */}
+            <div>
+              <h4 className="text-sm font-semibold mb-6" style={{ color: '#888' }}>Local Time</h4>
+              <p className="text-lg font-mono text-white">{formatTime(currentTime)}</p>
+              <p className="text-xs mt-1" style={{ color: '#555' }}>(GMT +5:30)</p>
+            </div>
           </div>
+
+          {/* Bottom row */}
+          <div className="border-t pt-8 flex flex-col sm:flex-row items-center justify-between gap-4" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
+            <p className="text-xs" style={{ color: '#555' }}>© Rishi Parmar 2026</p>
+            <a
+              href="#home"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="text-xs transition-colors duration-200"
+              style={{ color: '#555' }}
+              onMouseEnter={e => (e.currentTarget.style.color = '#CCFF00')}
+              onMouseLeave={e => (e.currentTarget.style.color = '#555')}
+            >
+              Back to top ↑
+            </a>
+          </div>
+        </div>
+
+        {/* Giant watermark text */}
+        <div className="footer-giant-text text-center w-full px-6 pb-8">
+          Rishi
         </div>
       </footer>
     </div>

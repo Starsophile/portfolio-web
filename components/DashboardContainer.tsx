@@ -18,18 +18,22 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({ dashboar
       case DashboardId.SMARTPHONE_SURVEY:
         return <SmartphoneSurveyDashboard />;
       default:
-        return <div className="text-rose-500 font-mono text-xs">ERR_DASHBOARD_NOT_FOUND: {dashboardId}</div>;
+        return <div className="text-red-400 font-mono text-xs">ERR_DASHBOARD_NOT_FOUND: {dashboardId}</div>;
     }
   };
 
   return (
-    <div className="my-12 animate-fade-in w-full">
-      <div className="flex items-center gap-4 mb-6 opacity-60">
-        <div className="h-px bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent flex-1"></div>
-        <span className="text-[10px] font-mono text-indigo-400 uppercase tracking-[0.2em]">Live Module Interaction</span>
-        <div className="h-px bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent flex-1"></div>
+    <div className="my-8 animate-fade-in w-full">
+      <div className="flex items-center gap-4 mb-6 opacity-40">
+        <div className="h-px flex-1" style={{ background: 'linear-gradient(to right, transparent, rgba(204,255,0,0.2), transparent)' }} />
+        <span className="text-[10px] font-mono uppercase tracking-[0.2em]" style={{ color: '#CCFF00' }}>
+          Live Module
+        </span>
+        <div className="h-px flex-1" style={{ background: 'linear-gradient(to right, transparent, rgba(204,255,0,0.2), transparent)' }} />
       </div>
-      <Suspense fallback={<div className="h-64 bg-zinc-900/30 rounded-lg animate-pulse border border-white/5"></div>}>
+      <Suspense fallback={
+        <div className="h-64 animate-pulse border" style={{ backgroundColor: 'rgba(17,17,17,0.5)', borderColor: 'rgba(255,255,255,0.04)', borderRadius: '16px' }} />
+      }>
         {renderDashboard()}
       </Suspense>
     </div>

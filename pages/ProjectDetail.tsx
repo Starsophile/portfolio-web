@@ -7,152 +7,165 @@ import { ProjectAI } from '../components/ProjectAI';
 const { useParams, Link, Navigate } = ReactRouterDOM;
 
 export const ProjectDetail: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const project = projects.find(p => p.id === id);
+   const { id } = useParams<{ id: string }>();
+   const project = projects.find(p => p.id === id);
 
-  if (!project) {
-    return <Navigate to="/projects" replace />;
-  }
+   if (!project) return <Navigate to="/projects" replace />;
 
-  return (
-    <div className="animate-fade-in max-w-[1400px] mx-auto w-full">
-      {/* Header Section */}
-      <div className="mb-16">
-        <div className="flex items-center gap-3 text-amber-500 font-bold text-xs uppercase tracking-widest mb-4">
-           <span>{project.category}</span>
-           <span className="text-zinc-600">•</span>
-           <span>{project.date}</span>
-        </div>
-        
-        <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 max-w-4xl leading-[0.95] tracking-tight">
-          {project.title}
-        </h1>
-        <h2 className="text-xl md:text-2xl text-zinc-400 max-w-3xl leading-relaxed mb-12">
-          {project.subtitle}
-        </h2>
-      </div>
+   return (
+      <div className="animate-fade-in">
+         <div className="px-6 md:px-12 max-w-[1400px] mx-auto pt-32" style={{ paddingBottom: '8rem' }}>
 
-      {/* Hero Visual - Dynamic per project */}
-      {project.heroVisual && (
-         <div className="w-full h-[300px] md:h-[500px] bg-[#111] rounded-[2rem] relative overflow-hidden mb-24 shadow-2xl flex flex-col items-center justify-center border border-white/5 group">
-            <div className={`absolute inset-0 bg-gradient-to-tr ${project.heroVisual.gradientFrom} ${project.heroVisual.gradientTo} opacity-80 group-hover:scale-105 transition-transform duration-1000`}></div>
-            <h2 className="text-5xl md:text-8xl font-black text-white z-10 text-center tracking-tighter uppercase drop-shadow-xl">
-              {project.heroVisual.displayText}
-            </h2>
-            <p className="text-amber-500 font-mono text-sm md:text-base uppercase tracking-[0.3em] mt-4 z-10 bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm border border-white/5">{project.heroVisual.subText}</p>
-         </div>
-      )}
+            {/* HEADER */}
+            <div className="mb-16">
+               <div className="flex items-center gap-3 mb-5">
+                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: '#CCFF00' }} />
+                  <span className="font-semibold text-xs uppercase tracking-[0.2em]" style={{ color: '#CCFF00' }}>
+                     {project.category}
+                  </span>
+                  <span style={{ color: '#333' }}>·</span>
+                  <span className="text-xs font-mono" style={{ color: '#555' }}>{project.date}</span>
+               </div>
+               <h1 className="text-4xl md:text-7xl font-extrabold text-white mb-8 max-w-4xl leading-[0.92] tracking-tight"
+                  style={{ fontFamily: "'Syne', sans-serif" }}>
+                  {project.title}
+               </h1>
+               <p className="text-lg md:text-xl max-w-3xl leading-relaxed" style={{ color: '#888' }}>
+                  {project.subtitle}
+               </p>
+            </div>
 
-      <div className="grid grid-cols-1 xl:grid-cols-12 gap-16 xl:gap-24">
-        {/* Main Content */}
-        <div className="xl:col-span-8 space-y-20">
-           
-           {/* Overview */}
-           <section>
-             <h3 className="text-3xl font-bold text-white mb-6">Objective</h3>
-             <p className="text-zinc-400 text-lg md:text-xl leading-relaxed">
-               {project.summary}
-             </p>
-           </section>
+            {/* HERO VISUAL */}
+            {project.heroVisual && (
+               <div className="w-full h-[280px] md:h-[450px] relative overflow-hidden mb-20 flex flex-col items-center justify-center border group"
+                  style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.06)', borderRadius: '24px' }}>
+                  <div className="absolute inset-0 group-hover:scale-105 transition-transform duration-1000"
+                     style={{ background: 'radial-gradient(circle at center, rgba(204,255,0,0.07) 0%, transparent 65%)' }} />
+                  <h2 className="text-5xl md:text-8xl font-extrabold text-white z-10 text-center tracking-tighter uppercase"
+                     style={{ fontFamily: "'Syne', sans-serif" }}>
+                     {project.heroVisual.displayText}
+                  </h2>
+                  <p className="text-xs md:text-sm uppercase tracking-[0.3em] mt-4 z-10 px-5 py-2 rounded-full border font-mono"
+                     style={{ color: '#CCFF00', backgroundColor: 'rgba(0,0,0,0.6)', borderColor: 'rgba(204,255,0,0.15)' }}>
+                     {project.heroVisual.subText}
+                  </p>
+               </div>
+            )}
 
-           {/* Interactive Dashboard Injection */}
-           {project.dashboardId && (
-              <div className="my-12">
-                 <h3 className="text-xl font-bold text-white mb-6">Live System Prototype</h3>
-                 <div className="bg-[#111] border border-white/10 rounded-2xl p-2 md:p-4">
-                    <DashboardContainer dashboardId={project.dashboardId} />
-                 </div>
-              </div>
-           )}
+            {/* CONTENT */}
+            <div className="grid grid-cols-1 xl:grid-cols-12 gap-16 xl:gap-20">
+               <div className="xl:col-span-8 space-y-16">
 
-           {/* Detailed Sections */}
-           {project.sections.map((section, idx) => (
-             <section key={idx} className="border-t border-white/5 pt-12">
-                <div className="flex items-baseline justify-between mb-8">
-                  <h3 className="text-2xl font-bold text-white">{section.title}</h3>
-                </div>
-                
-                {/* Regular Text */}
-                {section.type === 'text' && (
-                   <p className="text-zinc-400 leading-relaxed text-lg md:text-xl">{section.content}</p>
-                )}
+                  <section>
+                     <h3 className="text-2xl md:text-3xl font-bold text-white mb-6" style={{ fontFamily: "'Syne', sans-serif" }}>Objective</h3>
+                     <p className="text-base md:text-lg leading-relaxed" style={{ color: '#888' }}>{project.summary}</p>
+                  </section>
 
-                {/* Grid of Cards */}
-                {section.type === 'grid' && (
-                  <div className="space-y-6">
-                    {section.content && <p className="text-zinc-400 mb-6 text-lg">{section.content}</p>}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {section.items?.map((item, i) => (
-                        <div key={i} className="bg-[#161618] border border-white/5 p-8 rounded-2xl hover:border-amber-500/30 transition-colors">
-                          <h4 className="text-white font-bold mb-3 text-lg">{item.heading}</h4>
-                          <p className="text-zinc-400 text-base leading-relaxed whitespace-pre-line">{item.body}</p>
+                  {project.dashboardId && (
+                     <div className="my-12">
+                        <h3 className="text-lg font-bold text-white mb-6" style={{ fontFamily: "'Syne', sans-serif" }}>Live System Prototype</h3>
+                        <div className="border p-2 md:p-4" style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.05)', borderRadius: '24px' }}>
+                           <DashboardContainer dashboardId={project.dashboardId} />
                         </div>
-                      ))}
-                    </div>
+                     </div>
+                  )}
+
+                  {project.sections.map((section, idx) => (
+                     <section key={idx} className="border-t pt-10" style={{ borderColor: 'rgba(255,255,255,0.04)' }}>
+                        <h3 className="text-xl md:text-2xl font-bold text-white mb-8" style={{ fontFamily: "'Syne', sans-serif" }}>
+                           {section.title}
+                        </h3>
+
+                        {section.type === 'text' && (
+                           <p className="leading-relaxed text-base" style={{ color: '#888' }}>{section.content}</p>
+                        )}
+
+                        {section.type === 'grid' && (
+                           <div className="space-y-6">
+                              {section.content && <p className="mb-6 text-base" style={{ color: '#888' }}>{section.content}</p>}
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                 {section.items?.map((item, i) => (
+                                    <div key={i} className="p-7 border transition-colors duration-300"
+                                       style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.05)', borderRadius: '16px' }}
+                                       onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(204,255,0,0.2)')}
+                                       onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.05)')}>
+                                       <h4 className="text-white font-bold mb-3 text-base">{item.heading}</h4>
+                                       <p className="text-sm leading-relaxed whitespace-pre-line" style={{ color: '#888' }}>{item.body}</p>
+                                    </div>
+                                 ))}
+                              </div>
+                           </div>
+                        )}
+
+                        {section.type === 'row' && (
+                           <div className="space-y-6">
+                              {section.content && <p className="mb-6 text-base" style={{ color: '#888' }}>{section.content}</p>}
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                 {section.items?.map((item, i) => (
+                                    <div key={i} className="p-7 border"
+                                       style={{
+                                          backgroundColor: i === 0 ? 'rgba(204,255,0,0.03)' : '#111',
+                                          borderColor: i === 0 ? 'rgba(204,255,0,0.12)' : 'rgba(255,255,255,0.05)',
+                                          borderRadius: '16px',
+                                       }}>
+                                       <h4 className="font-bold mb-3 uppercase tracking-[0.1em] text-xs"
+                                          style={{ color: i === 0 ? '#CCFF00' : '#888' }}>{item.heading}</h4>
+                                       <p className="text-sm leading-relaxed whitespace-pre-line font-medium" style={{ color: '#ccc' }}>{item.body}</p>
+                                    </div>
+                                 ))}
+                              </div>
+                           </div>
+                        )}
+
+                        {section.type === 'list' && (
+                           <ul className="space-y-4 mt-4 p-8 md:p-10 border"
+                              style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.05)', borderRadius: '16px' }}>
+                              {section.content?.split('\n').map((item, i) => (
+                                 <li key={i} className="flex items-start gap-4 text-sm md:text-base leading-relaxed" style={{ color: '#ccc' }}>
+                                    <span className="mt-2 w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: '#CCFF00' }} />
+                                    {item.replace(/^- /, '')}
+                                 </li>
+                              ))}
+                           </ul>
+                        )}
+
+                        {section.type === 'highlight' && (
+                           <div className="p-8 md:p-10 my-4 text-center border"
+                              style={{ background: 'linear-gradient(135deg, #111 0%, #000 100%)', borderColor: 'rgba(204,255,0,0.08)', borderRadius: '24px' }}>
+                              <p className="text-xl md:text-2xl text-white font-bold leading-relaxed italic" style={{ fontFamily: "'Syne', sans-serif" }}>
+                                 "{section.content}"
+                              </p>
+                           </div>
+                        )}
+                     </section>
+                  ))}
+
+                  <ProjectAI project={project} />
+               </div>
+
+               {/* SIDEBAR */}
+               <div className="xl:col-span-4 space-y-12">
+                  <div className="sticky top-32">
+                     <div className="p-8 border" style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.05)', borderRadius: '24px' }}>
+                        <h4 className="text-base font-bold text-white mb-8 border-b pb-4"
+                           style={{ fontFamily: "'Syne', sans-serif", borderColor: 'rgba(255,255,255,0.04)' }}>
+                           PM Takeaways
+                        </h4>
+                        <ul className="space-y-7">
+                           {project.keyLearnings.map((learning, i) => (
+                              <li key={i} className="text-sm leading-relaxed" style={{ color: '#888' }}>
+                                 <span className="block font-bold text-xs uppercase mb-2 tracking-wider" style={{ color: '#CCFF00' }}>
+                                    Key Point 0{i + 1}
+                                 </span>
+                                 {learning}
+                              </li>
+                           ))}
+                        </ul>
+                     </div>
                   </div>
-                )}
-
-                {/* Row Split */}
-                {section.type === 'row' && (
-                  <div className="space-y-6">
-                    {section.content && <p className="text-zinc-400 mb-6 text-lg">{section.content}</p>}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                       {section.items?.map((item, i) => (
-                         <div key={i} className={`p-8 rounded-2xl border ${i === 0 ? 'bg-amber-500/5 border-amber-500/20' : 'bg-zinc-900 border-white/5'}`}>
-                            <h4 className={`font-bold mb-4 uppercase tracking-wider text-xs ${i === 0 ? 'text-amber-500' : 'text-zinc-500'}`}>{item.heading}</h4>
-                            <p className="text-zinc-300 text-base leading-relaxed whitespace-pre-line font-medium">{item.body}</p>
-                         </div>
-                       ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* Lists */}
-                {section.type === 'list' && (
-                   <ul className="space-y-4 mt-4 bg-[#111] p-10 rounded-2xl border border-white/5">
-                      {section.content && section.content.split('\n').map((item, i) => (
-                        <li key={i} className="flex items-start gap-4 text-zinc-300 text-lg leading-relaxed">
-                           <span className="mt-2.5 w-1.5 h-1.5 bg-amber-500 rounded-full shrink-0"></span>
-                           {item.replace(/^- /, '')}
-                        </li>
-                      ))}
-                   </ul>
-                )}
-
-                {/* Highlights */}
-                {section.type === 'highlight' && (
-                   <div className="bg-gradient-to-r from-zinc-900 to-black border border-white/10 p-10 my-8 rounded-2xl text-center shadow-lg">
-                      <p className="text-2xl text-white font-bold leading-relaxed italic">"{section.content}"</p>
-                   </div>
-                )}
-             </section>
-           ))}
-
-           {/* AI Helper */}
-           <ProjectAI project={project} />
-        </div>
-
-        {/* Sidebar */}
-        <div className="xl:col-span-4 space-y-12">
-           <div className="sticky top-32">
-              <div className="bg-[#111] border border-white/10 p-8 rounded-2xl shadow-xl">
-                 <h4 className="text-lg font-bold text-white mb-8 border-b border-white/5 pb-4">PM Takeaways</h4>
-                 <ul className="space-y-8">
-                    {project.keyLearnings.map((learning, i) => (
-                       <li key={i} className="text-zinc-400 text-sm leading-relaxed">
-                          <span className="block text-amber-500 font-bold text-xs uppercase mb-2">Key Point 0{i+1}</span>
-                          {learning}
-                       </li>
-                    ))}
-                 </ul>
-              </div>
-
-              <div className="mt-8 flex justify-center">
-                 <p className="text-zinc-700 text-[10px] uppercase tracking-[0.2em] font-bold">Student Case Study</p>
-              </div>
-           </div>
-        </div>
+               </div>
+            </div>
+         </div>
       </div>
-    </div>
-  );
+   );
 };
