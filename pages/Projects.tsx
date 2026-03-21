@@ -10,7 +10,7 @@ export const Projects: React.FC = () => {
       <section className="px-6 md:px-12 max-w-[1400px] mx-auto pt-32" style={{ paddingBottom: '8rem' }}>
         {/* Header */}
         <div className="flex flex-col items-center text-center mb-20">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] block mb-4 anim-d1" style={{ color: '#888' }}>
+          <span className="text-sm font-semibold uppercase tracking-[0.2em] block mb-4 anim-d1" style={{ color: '#888' }}>
             My Work
           </span>
           <h1 className="text-5xl md:text-8xl font-extrabold text-white mb-6 anim-d2"
@@ -37,11 +37,11 @@ export const Projects: React.FC = () => {
                 <div className="flex items-center justify-between mb-8">
                   <div className="flex items-center gap-3">
                     <span className="w-2 h-2 rounded-full" style={{ backgroundColor: '#CCFF00' }} />
-                    <span className="font-semibold uppercase tracking-[0.15em] text-xs" style={{ color: '#CCFF00' }}>
+                    <span className="font-semibold uppercase tracking-[0.15em] text-sm" style={{ color: '#CCFF00' }}>
                       {project.category}
                     </span>
                   </div>
-                  <span className="text-xs font-mono px-3 py-1 rounded-full border"
+                  <span className="text-sm font-mono px-3 py-1.5 rounded-full border"
                     style={{ color: '#555', borderColor: 'rgba(255,255,255,0.06)' }}>
                     {project.date}
                   </span>
@@ -52,14 +52,14 @@ export const Projects: React.FC = () => {
                   {project.title}
                 </h2>
 
-                <p className="text-sm leading-relaxed mb-8 flex-1" style={{ color: '#888' }}>
+                <p className="text-base leading-relaxed mb-8 flex-1" style={{ color: '#888' }}>
                   {project.summary}
                 </p>
 
                 <div className="flex flex-wrap gap-2 mb-8">
                   {project.tags.slice(0, 3).map(tag => (
-                    <span key={tag} className="px-3 py-1 rounded-full text-xs"
-                      style={{ border: '1px solid rgba(255,255,255,0.06)', color: '#555' }}>
+                    <span key={tag} className="px-3 py-1.5 rounded-full text-sm"
+                      style={{ border: '1px solid rgba(255,255,255,0.06)', color: '#888' }}>
                       {tag}
                     </span>
                   ))}

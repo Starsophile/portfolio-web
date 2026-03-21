@@ -82,7 +82,7 @@ const FaqItem: React.FC<{ q: string; a: string }> = ({ q, a }) => {
         className="w-full flex items-center justify-between py-7 text-left transition-colors duration-200 group"
         id={`faq-${q.slice(0, 15).replace(/\s+/g, '-').toLowerCase()}`}
       >
-        <span className="text-lg font-semibold text-white pr-8" style={{ fontFamily: "'Syne', sans-serif" }}>
+        <span className="text-lg md:text-xl font-semibold text-white pr-8" style={{ fontFamily: "'Syne', sans-serif" }}>
           {q}
         </span>
         <span
@@ -96,7 +96,7 @@ const FaqItem: React.FC<{ q: string; a: string }> = ({ q, a }) => {
         </span>
       </button>
       <div className={`faq-answer ${open ? 'open' : ''}`}>
-        <p className="text-sm leading-relaxed pb-4" style={{ color: '#888' }}>
+        <p className="text-base leading-relaxed pb-4" style={{ color: '#888' }}>
           {a}
         </p>
       </div>
@@ -112,8 +112,8 @@ export const Landing: React.FC = () => {
 
   const stat1 = useCountUp(3, 1500);
   const stat2 = useCountUp(100, 2000);
-  const stat3 = useCountUp(50, 1800);
-  const stat4 = useCountUp(95, 2200);
+  const stat3 = useCountUp(4, 1800);
+  const stat4 = useCountUp(10, 2200);
 
   return (
     <div className="animate-fade-in" ref={revealRef}>
@@ -126,7 +126,7 @@ export const Landing: React.FC = () => {
 
           {/* Left — Text */}
           <div className="flex-1 z-10">
-            <p className="text-sm mb-6 anim-d1" style={{ color: '#888' }}>
+            <p className="text-base mb-6 anim-d1" style={{ color: '#888' }}>
               Hello <span className="font-bold" style={{ color: '#fff' }}>My Name</span> Is
             </p>
 
@@ -148,7 +148,7 @@ export const Landing: React.FC = () => {
             <p className="text-lg md:text-xl mb-2 anim-d3" style={{ color: '#888' }}>
               I don't use the tech. I feel the tech.
             </p>
-            <p className="text-sm mb-12 anim-d3" style={{ color: '#555' }}>
+            <p className="text-base mb-12 anim-d3" style={{ color: '#555' }}>
               Product Researcher & Strategist — Consumer Tech
             </p>
 
@@ -244,7 +244,7 @@ export const Landing: React.FC = () => {
           ╚══════════════════════════════════════════╝ */}
       <section id="experience" className="px-6 md:px-12 max-w-[1400px] mx-auto" style={{ paddingTop: '8rem', paddingBottom: '4rem' }}>
         <div className="mb-12 reveal">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] block mb-4" style={{ color: '#888' }}>
+          <span className="text-sm font-semibold uppercase tracking-[0.2em] block mb-4" style={{ color: '#888' }}>
             Experience
           </span>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
@@ -269,9 +269,9 @@ export const Landing: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
-            { period: 'Current Focus', title: 'Product Research\n& Strategy', tags: ['Consumer Tech', 'Analysis'], num: '01' },
-            { period: '2025 — Present', title: 'Market\nAnalyst', tags: ['Smartphones', 'Retail'], num: '02' },
-            { period: '2024 — 2025', title: 'Independent\nResearcher', tags: ['User Behaviour', 'Surveys'], num: '03' },
+            { period: 'Ongoing', title: 'Self-Directed\nCase Studies', tags: ['Consumer Tech', 'Strategy'], num: '01' },
+            { period: '2025 — Present', title: 'Primary Field\nResearch', tags: ['Retail Visits', 'Observation'], num: '02' },
+            { period: '2025 — Present', title: 'Independent\nSurveys', tags: ['100+ Users', 'Behaviour'], num: '03' },
           ].map((card, i) => (
             <div
               key={card.num}
@@ -284,7 +284,7 @@ export const Landing: React.FC = () => {
               onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(204,255,0,0.3)')}
               onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)')}
             >
-              <p className="text-sm mb-6" style={{ color: '#555' }}>{card.period}</p>
+              <p className="text-base mb-6" style={{ color: '#555' }}>{card.period}</p>
               <div>
                 <h3 className="text-2xl font-bold text-white mb-4 whitespace-pre-line" style={{ fontFamily: "'Syne', sans-serif", lineHeight: 1.1 }}>
                   {card.title}
@@ -292,7 +292,7 @@ export const Landing: React.FC = () => {
                 <div className="flex items-end justify-between">
                   <div className="flex gap-2">
                     {card.tags.map(t => (
-                      <span key={t} className="px-3 py-1 rounded-full text-xs" style={{ border: '1px solid rgba(255,255,255,0.1)', color: '#888' }}>
+                      <span key={t} className="px-3 py-1.5 rounded-full text-sm" style={{ border: '1px solid rgba(255,255,255,0.1)', color: '#888' }}>
                         {t}
                       </span>
                     ))}
@@ -347,14 +347,14 @@ export const Landing: React.FC = () => {
           ╚══════════════════════════════════════════╝ */}
       <section id="approach" className="px-6 md:px-12 max-w-[1400px] mx-auto" style={{ paddingTop: '8rem', paddingBottom: '8rem' }}>
         <div className="mb-14 reveal">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] block mb-4" style={{ color: '#888' }}>
+          <span className="text-sm font-semibold uppercase tracking-[0.2em] block mb-4" style={{ color: '#888' }}>
             Services
           </span>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <h2 className="text-3xl md:text-5xl font-bold text-white" style={{ fontFamily: "'Syne', sans-serif" }}>
               How I See Products
             </h2>
-            <p className="text-base max-w-md" style={{ color: '#555' }}>
+            <p className="text-base md:text-lg max-w-md" style={{ color: '#555' }}>
               I break down product decisions through the lens of market reality, user behaviour, and engineering constraints.
             </p>
           </div>
@@ -378,14 +378,14 @@ export const Landing: React.FC = () => {
                 <span className="text-sm font-bold" style={{ color: '#CCFF00', fontFamily: "'Syne', sans-serif" }}>
                   {card.num}
                 </span>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.15em] px-3 py-1 rounded-full" style={{ color: '#555', border: '1px solid rgba(255,255,255,0.06)' }}>
+                <span className="text-xs font-semibold uppercase tracking-[0.15em] px-3 py-1.5 rounded-full" style={{ color: '#555', border: '1px solid rgba(255,255,255,0.06)' }}>
                   {card.sub}
                 </span>
               </div>
               <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 transition-colors duration-300 group-hover:text-[#CCFF00]" style={{ fontFamily: "'Syne', sans-serif" }}>
                 {card.title}
               </h3>
-              <p className="text-sm leading-relaxed" style={{ color: '#888' }}>
+              <p className="text-base leading-relaxed" style={{ color: '#888' }}>
                 {card.desc}
               </p>
             </div>
@@ -393,7 +393,7 @@ export const Landing: React.FC = () => {
         </div>
 
         <div className="mt-8 text-center reveal">
-          <p className="text-sm mb-4" style={{ color: '#555' }}>For specific requests, please contact me</p>
+          <p className="text-base mb-4" style={{ color: '#555' }}>For specific requests, please contact me</p>
           <a
             href="#contact"
             className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5"
@@ -448,12 +448,12 @@ export const Landing: React.FC = () => {
           <div className="py-4">
             <div className="flex items-center gap-2 mb-4">
               <span className="w-2 h-2 rounded-full" style={{ backgroundColor: '#CCFF00' }} />
-              <span className="text-xs font-semibold uppercase tracking-[0.15em]" style={{ color: '#CCFF00' }}>You will get</span>
+              <span className="text-sm font-semibold uppercase tracking-[0.15em]" style={{ color: '#CCFF00' }}>You will get</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4" style={{ fontFamily: "'Syne', sans-serif" }}>
               All-in-one<br />Approach
             </h2>
-            <p className="text-base mb-10 leading-relaxed" style={{ color: '#555' }}>
+            <p className="text-base md:text-lg mb-10 leading-relaxed" style={{ color: '#555' }}>
               Transforming ambiguity into actionable product insight:
             </p>
             <div className="space-y-5">
@@ -465,8 +465,8 @@ export const Landing: React.FC = () => {
                 { icon: '◆', text: 'Honest problem-solving — not just polished outcomes' },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-4 group">
-                  <span className="text-xs mt-1 transition-colors duration-200" style={{ color: '#CCFF00' }}>{item.icon}</span>
-                  <p className="text-sm leading-relaxed transition-colors duration-200 group-hover:text-white" style={{ color: '#888' }}>
+                  <span className="text-sm mt-1 transition-colors duration-200" style={{ color: '#CCFF00' }}>{item.icon}</span>
+                  <p className="text-base leading-relaxed transition-colors duration-200 group-hover:text-white" style={{ color: '#888' }}>
                     {item.text}
                   </p>
                 </div>
@@ -482,7 +482,7 @@ export const Landing: React.FC = () => {
       <section id="work" className="px-6 md:px-12 max-w-[1400px] mx-auto" style={{ paddingTop: '4rem', paddingBottom: '8rem' }}>
         <div className="flex flex-col md:flex-row items-end justify-between mb-14 gap-4 reveal">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] block mb-4" style={{ color: '#888' }}>
+            <span className="text-sm font-semibold uppercase tracking-[0.2em] block mb-4" style={{ color: '#888' }}>
               My Work
             </span>
             <h2 className="text-4xl md:text-6xl font-bold text-white" style={{ fontFamily: "'Syne', sans-serif" }}>
@@ -512,12 +512,12 @@ export const Landing: React.FC = () => {
                 {/* Top */}
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-3">
-                    <span className="px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide"
+                    <span className="px-4 py-1.5 rounded-full text-sm font-semibold uppercase tracking-wide"
                       style={{ backgroundColor: 'rgba(204,255,0,0.08)', color: '#CCFF00' }}>
                       {project.category}
                     </span>
                   </div>
-                  <span className="text-xs font-mono" style={{ color: '#555' }}>Date: {project.date}</span>
+                  <span className="text-sm font-mono" style={{ color: '#555' }}>Date: {project.date}</span>
                 </div>
 
                 {/* Title */}
@@ -530,7 +530,7 @@ export const Landing: React.FC = () => {
                 </h3>
 
                 {/* Summary */}
-                <p className={`text-sm leading-relaxed mb-6 ${index === 0 ? 'md:text-base max-w-3xl' : 'line-clamp-2'}`}
+                <p className={`text-base leading-relaxed mb-6 ${index === 0 ? 'md:text-lg max-w-3xl' : 'line-clamp-2'}`}
                   style={{ color: '#888' }}>
                   {project.summary}
                 </p>
@@ -539,7 +539,7 @@ export const Landing: React.FC = () => {
                 <div className="flex items-center justify-between mt-auto">
                   <div className="flex gap-2">
                     {project.tags.slice(0, 3).map(tag => (
-                      <span key={tag} className="px-3 py-1 rounded-full text-xs"
+                      <span key={tag} className="px-3 py-1.5 rounded-full text-sm"
                         style={{ border: '1px solid rgba(255,255,255,0.08)', color: '#888' }}>
                         {tag}
                       </span>
@@ -563,7 +563,7 @@ export const Landing: React.FC = () => {
           ╚══════════════════════════════════════════╝ */}
       <section id="stats" className="px-6 md:px-12 max-w-[1400px] mx-auto" style={{ paddingBottom: '8rem' }}>
         <div className="mb-12 reveal">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] block mb-4" style={{ color: '#888' }}>
+          <span className="text-sm font-semibold uppercase tracking-[0.2em] block mb-4" style={{ color: '#888' }}>
             Numeric
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-white" style={{ fontFamily: "'Syne', sans-serif" }}>
@@ -575,10 +575,10 @@ export const Landing: React.FC = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { ref: stat1.ref, count: stat1.count, suffix: '', label: 'Case Studies', unit: '' },
-            { ref: stat2.ref, count: stat2.count, suffix: '+', label: 'Survey Responses', unit: '' },
-            { ref: stat3.ref, count: stat3.count, suffix: '+', label: 'Hours Research', unit: '' },
-            { ref: stat4.ref, count: stat4.count, suffix: '%', label: 'Passion Driven', unit: '' },
+            { ref: stat1.ref, count: stat1.count, suffix: '', label: 'Case Studies Published', unit: '' },
+            { ref: stat2.ref, count: stat2.count, suffix: '+', label: 'Users Surveyed', unit: '' },
+            { ref: stat3.ref, count: stat3.count, suffix: '+', label: 'Retail Stores Visited', unit: '' },
+            { ref: stat4.ref, count: stat4.count, suffix: '+', label: 'Industry Interactions', unit: '' },
           ].map((stat, i) => (
             <div
               key={i}
@@ -591,7 +591,7 @@ export const Landing: React.FC = () => {
               <div className="stat-number text-5xl md:text-6xl font-extrabold mb-3" style={{ color: '#CCFF00', fontFamily: "'Syne', sans-serif" }}>
                 {stat.count}{stat.suffix}
               </div>
-              <p className="text-sm font-medium" style={{ color: '#888' }}>{stat.label}</p>
+              <p className="text-base font-medium" style={{ color: '#888' }}>{stat.label}</p>
             </div>
           ))}
         </div>
@@ -602,7 +602,7 @@ export const Landing: React.FC = () => {
           ╚══════════════════════════════════════════╝ */}
       <section id="insights" className="px-6 md:px-12 max-w-[1400px] mx-auto" style={{ paddingBottom: '8rem' }}>
         <div className="mb-14 reveal">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] block mb-4" style={{ color: '#888' }}>
+          <span className="text-sm font-semibold uppercase tracking-[0.2em] block mb-4" style={{ color: '#888' }}>
             Insights
           </span>
           <h2 className="text-4xl md:text-6xl font-bold text-white" style={{ fontFamily: "'Syne', sans-serif" }}>
@@ -636,11 +636,11 @@ export const Landing: React.FC = () => {
               onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)')}
             >
               <div>
-                <span className="text-xs font-mono block mb-5" style={{ color: '#555' }}>{card.date}</span>
+                <span className="text-sm font-mono block mb-5" style={{ color: '#555' }}>{card.date}</span>
                 <h4 className="text-xl font-bold text-white mb-3" style={{ fontFamily: "'Syne', sans-serif" }}>
                   {card.title}
                 </h4>
-                <p className="text-sm leading-relaxed mb-8" style={{ color: '#888' }}>
+                <p className="text-base leading-relaxed mb-8" style={{ color: '#888' }}>
                   {card.insight}
                 </p>
               </div>
@@ -670,13 +670,13 @@ export const Landing: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           {/* Left */}
           <div className="reveal">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] block mb-4" style={{ color: '#888' }}>
+            <span className="text-sm font-semibold uppercase tracking-[0.2em] block mb-4" style={{ color: '#888' }}>
               Most Asked Questions
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6" style={{ fontFamily: "'Syne', sans-serif" }}>
               FAQs
             </h2>
-            <p className="text-sm leading-relaxed mb-8" style={{ color: '#555' }}>
+            <p className="text-base leading-relaxed mb-8" style={{ color: '#555' }}>
               Do you have any other questions?
             </p>
             <a
@@ -698,8 +698,8 @@ export const Landing: React.FC = () => {
               a="I specialize in product research, market analysis, and consumer behavior studies — primarily in the smartphone and consumer tech space. My work involves case studies, competitive analysis, and user surveys."
             />
             <FaqItem
-              q="Are you available for freelance work?"
-              a="Yes! I'm open to freelance research, product strategy consulting, and analytical projects. I work best on projects related to consumer tech, market dynamics, and product positioning."
+              q="Are you open to feedback on your work?"
+              a="Absolutely — and I actively seek it. I'm at an early stage of my journey and I believe honest feedback from practitioners matters more than validation. If you've worked in consumer tech or distribution, I'd genuinely love your perspective."
             />
             <FaqItem
               q="What tools do you use?"
@@ -728,15 +728,15 @@ export const Landing: React.FC = () => {
           {/* Glow */}
           <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-96 h-96 rounded-full blur-[120px] pointer-events-none" style={{ backgroundColor: 'rgba(204,255,0,0.06)' }} />
 
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] block mb-6 relative z-10" style={{ color: '#888' }}>
+          <span className="text-sm font-semibold uppercase tracking-[0.2em] block mb-6 relative z-10" style={{ color: '#888' }}>
             Contact Me
           </span>
           <h2 className="text-4xl md:text-7xl font-extrabold text-white mb-4 relative z-10" style={{ fontFamily: "'Syne', sans-serif" }}>
             Let's Work<br />
             <span style={{ color: '#CCFF00' }}>Together</span>
           </h2>
-          <p className="text-sm mb-8 relative z-10" style={{ color: '#555' }}>
-            Have a project in mind? Let's discuss how I can help.
+          <p className="text-base md:text-lg mb-8 relative z-10" style={{ color: '#555' }}>
+            Want to discuss ideas, challenge my thinking, or just talk consumer tech? I'm always up for a real conversation.
           </p>
           <a
             href="mailto:01rishiparmar@gmail.com"

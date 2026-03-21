@@ -8,7 +8,7 @@ export const About: React.FC = () => {
       <section className="px-6 md:px-12 max-w-[1400px] mx-auto pt-32 pb-12">
         <div className="flex items-center gap-3 mb-8 anim-d1">
           <span className="w-2 h-2 rounded-full" style={{ backgroundColor: '#CCFF00' }} />
-          <span className="text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: '#888' }}>
+          <span className="text-sm font-semibold uppercase tracking-[0.2em]" style={{ color: '#888' }}>
             About
           </span>
         </div>
@@ -33,8 +33,8 @@ export const About: React.FC = () => {
                 "I don't just use tech, I feel the tech."
               </p>
               <div className="w-12 h-[3px] rounded-full mb-6" style={{ backgroundColor: '#CCFF00' }} />
-              <p className="text-sm leading-relaxed" style={{ color: '#888' }}>
-                Focusing on how products perform in everyday life, how users perceive them, and why certain decisions work at scale.
+              <p className="text-base leading-relaxed" style={{ color: '#888' }}>
+                I try to understand products from every angle — consumer, retailer, brand, and engineer. No single lens tells the full story.
               </p>
             </div>
           </div>
@@ -48,7 +48,7 @@ export const About: React.FC = () => {
               I work on self-driven case studies and research across consumer tech, especially smartphones — covering portfolio structure, pricing trade-offs, software optimization, and market dynamics. My approach blends user experience, business reality, and engineering limitations rather than isolated feature thinking.
             </p>
             <p>
-              I'm comfortable analyzing ambiguity, asking the right questions, and breaking down complex problems into executable insights. I'm early in my journey, but highly hands-on and eager to learn in fast-moving startup environments where ownership, clarity, and impact matter.
+              I started this journey in July 2025 with zero industry connections and no formal guidance — just a conviction that building real work matters more than waiting for the perfect opportunity. Everything here is self-directed, self-executed, and honest about where I am in the process.
             </p>
 
             <div className="p-8 md:p-10 border-l-[3px]"
@@ -60,11 +60,11 @@ export const About: React.FC = () => {
 
             {/* Skills */}
             <div className="pt-8">
-              <h3 className="text-xs font-bold uppercase tracking-[0.2em] mb-6" style={{ color: '#555' }}>Core Focus</h3>
+              <h3 className="text-sm font-bold uppercase tracking-[0.2em] mb-6" style={{ color: '#555' }}>Core Focus</h3>
               <div className="flex flex-wrap gap-3">
                 {['Product Strategy', 'Market Dynamics', 'Execution', 'Systems Thinking'].map(skill => (
                   <span key={skill}
-                    className="px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider border transition-all duration-200 cursor-default"
+                    className="px-5 py-2.5 rounded-full text-sm font-semibold uppercase tracking-wider border transition-all duration-200 cursor-default"
                     style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.06)', color: '#888' }}
                     onMouseEnter={e => { e.currentTarget.style.borderColor = '#CCFF00'; e.currentTarget.style.color = '#CCFF00'; }}
                     onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = '#888'; }}>
@@ -95,9 +95,9 @@ export const About: React.FC = () => {
           style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.06)', borderRadius: '32px' }}>
           <div className="absolute -right-20 -bottom-20 w-72 h-72 rounded-full blur-[100px] pointer-events-none" style={{ backgroundColor: 'rgba(204,255,0,0.04)' }} />
           <div className="relative z-10 max-w-3xl">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] block mb-4" style={{ color: '#CCFF00' }}>Professional Profile</span>
+            <span className="text-sm font-semibold uppercase tracking-[0.2em] block mb-4" style={{ color: '#CCFF00' }}>Professional Profile</span>
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-4" style={{ fontFamily: "'Syne', sans-serif" }}>Resume / CV</h2>
-            <p className="text-sm" style={{ color: '#888' }}>A comprehensive overview of my work, skills, and experience.</p>
+            <p className="text-base" style={{ color: '#888' }}>A comprehensive overview of my work, skills, and experience.</p>
           </div>
           <div className="relative z-10 flex flex-col sm:flex-row gap-4 w-full xl:w-auto shrink-0">
             <button onClick={() => window.open('/assets/Rishi_CV.pdf', '_blank')}

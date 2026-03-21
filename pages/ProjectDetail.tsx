@@ -20,11 +20,11 @@ export const ProjectDetail: React.FC = () => {
             <div className="mb-16">
                <div className="flex items-center gap-3 mb-5">
                   <span className="w-2 h-2 rounded-full" style={{ backgroundColor: '#CCFF00' }} />
-                  <span className="font-semibold text-xs uppercase tracking-[0.2em]" style={{ color: '#CCFF00' }}>
+                  <span className="font-semibold text-sm uppercase tracking-[0.2em]" style={{ color: '#CCFF00' }}>
                      {project.category}
                   </span>
-                  <span style={{ color: '#333' }}>·</span>
-                  <span className="text-xs font-mono" style={{ color: '#555' }}>{project.date}</span>
+                  <span style={{ color: '#333' }}>Â·</span>
+                  <span className="text-sm font-mono" style={{ color: '#555' }}>{project.date}</span>
                </div>
                <h1 className="text-4xl md:text-7xl font-extrabold text-white mb-8 max-w-4xl leading-[0.92] tracking-tight"
                   style={{ fontFamily: "'Syne', sans-serif" }}>
@@ -45,7 +45,7 @@ export const ProjectDetail: React.FC = () => {
                      style={{ fontFamily: "'Syne', sans-serif" }}>
                      {project.heroVisual.displayText}
                   </h2>
-                  <p className="text-xs md:text-sm uppercase tracking-[0.3em] mt-4 z-10 px-5 py-2 rounded-full border font-mono"
+                  <p className="text-base md:text-lg uppercase tracking-[0.3em] mt-4 z-10 px-5 py-2 rounded-full border font-mono"
                      style={{ color: '#CCFF00', backgroundColor: 'rgba(0,0,0,0.6)', borderColor: 'rgba(204,255,0,0.15)' }}>
                      {project.heroVisual.subText}
                   </p>
@@ -90,7 +90,7 @@ export const ProjectDetail: React.FC = () => {
                                        onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(204,255,0,0.2)')}
                                        onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.05)')}>
                                        <h4 className="text-white font-bold mb-3 text-base">{item.heading}</h4>
-                                       <p className="text-sm leading-relaxed whitespace-pre-line" style={{ color: '#888' }}>{item.body}</p>
+                                       <p className="text-base leading-relaxed whitespace-pre-line" style={{ color: '#888' }}>{item.body}</p>
                                     </div>
                                  ))}
                               </div>
@@ -108,9 +108,9 @@ export const ProjectDetail: React.FC = () => {
                                           borderColor: i === 0 ? 'rgba(204,255,0,0.12)' : 'rgba(255,255,255,0.05)',
                                           borderRadius: '16px',
                                        }}>
-                                       <h4 className="font-bold mb-3 uppercase tracking-[0.1em] text-xs"
+                                       <h4 className="font-bold mb-3 uppercase tracking-[0.1em] text-sm"
                                           style={{ color: i === 0 ? '#CCFF00' : '#888' }}>{item.heading}</h4>
-                                       <p className="text-sm leading-relaxed whitespace-pre-line font-medium" style={{ color: '#ccc' }}>{item.body}</p>
+                                       <p className="text-base leading-relaxed whitespace-pre-line font-medium" style={{ color: '#ccc' }}>{item.body}</p>
                                     </div>
                                  ))}
                               </div>
@@ -121,7 +121,7 @@ export const ProjectDetail: React.FC = () => {
                            <ul className="space-y-4 mt-4 p-8 md:p-10 border"
                               style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.05)', borderRadius: '16px' }}>
                               {section.content?.split('\n').map((item, i) => (
-                                 <li key={i} className="flex items-start gap-4 text-sm md:text-base leading-relaxed" style={{ color: '#ccc' }}>
+                                 <li key={i} className="flex items-start gap-4 text-base md:text-lg leading-relaxed" style={{ color: '#ccc' }}>
                                     <span className="mt-2 w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: '#CCFF00' }} />
                                     {item.replace(/^- /, '')}
                                  </li>
@@ -153,8 +153,8 @@ export const ProjectDetail: React.FC = () => {
                         </h4>
                         <ul className="space-y-7">
                            {project.keyLearnings.map((learning, i) => (
-                              <li key={i} className="text-sm leading-relaxed" style={{ color: '#888' }}>
-                                 <span className="block font-bold text-xs uppercase mb-2 tracking-wider" style={{ color: '#CCFF00' }}>
+                              <li key={i} className="text-base leading-relaxed" style={{ color: '#888' }}>
+                                 <span className="block font-bold text-sm uppercase mb-2 tracking-wider" style={{ color: '#CCFF00' }}>
                                     Key Point 0{i + 1}
                                  </span>
                                  {learning}

@@ -81,7 +81,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
           }}
         >
           {/* Left — Location indicator */}
-          <div className="hidden md:flex items-center gap-2 text-sm" style={{ color: '#888' }}>
+          <div className="hidden md:flex items-center gap-2 text-base" style={{ color: '#888' }}>
             <span className="w-2 h-2 rounded-full pulse-dot" style={{ backgroundColor: '#CCFF00' }} />
             <span>India</span>
           </div>
@@ -284,7 +284,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
             {/* Col 1 — Connect */}
             <div>
-              <h4 className="text-sm font-semibold mb-6" style={{ color: '#888' }}>Let's Connect</h4>
+              <h4 className="text-base font-semibold mb-6" style={{ color: '#888' }}>Let's Connect</h4>
               <a
                 href="mailto:01rishiparmar@gmail.com"
                 className="text-lg font-medium transition-colors duration-200 block"
@@ -298,13 +298,13 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
             {/* Col 2 — Menu */}
             <div>
-              <h4 className="text-sm font-semibold mb-6" style={{ color: '#888' }}>Menu</h4>
+              <h4 className="text-base font-semibold mb-6" style={{ color: '#888' }}>Menu</h4>
               <div className="flex flex-col gap-3">
                 {MENU_LINKS.map(l => (
                   <Link
                     key={l.to}
                     to={l.to}
-                    className="text-sm transition-colors duration-200"
+                    className="text-base transition-colors duration-200"
                     style={{ color: '#fff' }}
                     onMouseEnter={e => (e.currentTarget.style.color = '#CCFF00')}
                     onMouseLeave={e => (e.currentTarget.style.color = '#fff')}
@@ -317,7 +317,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
             {/* Col 3 — Socials */}
             <div>
-              <h4 className="text-sm font-semibold mb-6" style={{ color: '#888' }}>Socials</h4>
+              <h4 className="text-base font-semibold mb-6" style={{ color: '#888' }}>Socials</h4>
               <div className="flex flex-col gap-3">
                 {SOCIAL_LINKS.filter(s => !s.href.startsWith('mailto')).map(s => (
                   <a
@@ -325,7 +325,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm transition-colors duration-200"
+                    className="text-base transition-colors duration-200"
                     style={{ color: '#fff' }}
                     onMouseEnter={e => (e.currentTarget.style.color = '#CCFF00')}
                     onMouseLeave={e => (e.currentTarget.style.color = '#fff')}
@@ -338,22 +338,22 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
             {/* Col 4 — Local Time */}
             <div>
-              <h4 className="text-sm font-semibold mb-6" style={{ color: '#888' }}>Local Time</h4>
+              <h4 className="text-base font-semibold mb-6" style={{ color: '#888' }}>Local Time</h4>
               <p className="text-lg font-mono text-white">{formatTime(currentTime)}</p>
-              <p className="text-xs mt-1" style={{ color: '#555' }}>(GMT +5:30)</p>
+              <p className="text-sm mt-1" style={{ color: '#555' }}>(GMT +5:30)</p>
             </div>
           </div>
 
           {/* Bottom row */}
           <div className="border-t pt-8 flex flex-col sm:flex-row items-center justify-between gap-4" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
-            <p className="text-xs" style={{ color: '#555' }}>© Rishi Parmar 2026</p>
+            <p className="text-sm" style={{ color: '#555' }}>© Rishi Parmar 2026</p>
             <a
               href="#home"
               onClick={(e) => {
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="text-xs transition-colors duration-200"
+              className="text-sm transition-colors duration-200"
               style={{ color: '#555' }}
               onMouseEnter={e => (e.currentTarget.style.color = '#CCFF00')}
               onMouseLeave={e => (e.currentTarget.style.color = '#555')}
