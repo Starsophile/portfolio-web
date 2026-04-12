@@ -121,7 +121,7 @@ export const Landing: React.FC = () => {
       {/* ╔══════════════════════════════════════════╗
           ║  1. HERO - Full viewport                ║
           ╚══════════════════════════════════════════╝ */}
-      <section id="home" className="min-h-screen flex flex-col justify-center px-4 md:px-12 max-w-[1400px] mx-auto relative pt-24 pb-16 smoke-bg">
+      <section id="home" className="min-h-screen flex flex-col justify-center px-4 md:px-12 max-w-[1400px] mx-auto relative pt-24 pb-16 smoke-bg" style={{ overflow: 'hidden' }}>
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
 
           {/* Left - Text */}
@@ -134,7 +134,7 @@ export const Landing: React.FC = () => {
               className="font-extrabold text-white mb-6 anim-d2"
               style={{
                 fontFamily: "'Syne', sans-serif",
-                fontSize: 'clamp(2.8rem, 11vw, 10rem)',
+                fontSize: 'clamp(2.5rem, 9vw, 10rem)',
                 fontWeight: 800,
                 letterSpacing: '-0.03em',
                 lineHeight: 0.9,
@@ -180,8 +180,8 @@ export const Landing: React.FC = () => {
           </div>
 
           {/* Right - Portrait */}
-          <div className="flex-1 flex items-center justify-center w-full anim-d5">
-            <div className="relative w-full" style={{ maxWidth: 'min(320px, 80vw)' }}>
+          <div className="flex-1 flex items-center justify-center w-full anim-d5" style={{ overflow: 'hidden' }}>
+            <div className="relative w-full" style={{ maxWidth: 'min(320px, 75vw)', margin: '0 auto' }}>
               {/* Rotating outer ring */}
               <div className="absolute inset-[-30px] spin-slow pointer-events-none">
                 <svg viewBox="0 0 540 540" className="w-full h-full" fill="none">
@@ -276,7 +276,7 @@ export const Landing: React.FC = () => {
                   {card.title}
                 </h3>
                 <div className="flex items-end justify-between">
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 flex-wrap">
                     {card.tags.map(t => (
                       <span key={t} className="px-3 py-1.5 rounded-full text-sm" style={{ border: '1px solid rgba(255,255,255,0.1)', color: '#888' }}>
                         {t}
@@ -364,7 +364,7 @@ export const Landing: React.FC = () => {
                 <span className="text-sm font-bold" style={{ color: '#CCFF00', fontFamily: "'Syne', sans-serif" }}>
                   {card.num}
                 </span>
-                <span className="text-xs font-semibold uppercase tracking-[0.15em] px-3 py-1.5 rounded-full" style={{ color: '#777', border: '1px solid rgba(255,255,255,0.06)' }}>
+                <span className="text-xs font-semibold uppercase tracking-[0.15em] px-3 py-1.5 rounded-full hidden sm:inline-block" style={{ color: '#777', border: '1px solid rgba(255,255,255,0.06)' }}>
                   {card.sub}
                 </span>
               </div>
@@ -496,7 +496,7 @@ export const Landing: React.FC = () => {
             >
               <div className={`p-8 md:p-10 flex flex-col justify-between ${index === 0 ? 'min-h-[300px]' : 'min-h-[260px]'}`}>
                 {/* Top */}
-                <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
                   <div className="flex items-center gap-3">
                     <span className="px-4 py-1.5 rounded-full text-sm font-semibold uppercase tracking-wide"
                       style={{ backgroundColor: 'rgba(204,255,0,0.08)', color: '#CCFF00' }}>
@@ -523,7 +523,7 @@ export const Landing: React.FC = () => {
 
                 {/* Tags bottom */}
                 <div className="flex flex-wrap items-center justify-between gap-2 mt-auto">
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 flex-wrap">
                     {project.tags.slice(0, 3).map(tag => (
                       <span key={tag} className="px-3 py-1.5 rounded-full text-sm"
                         style={{ border: '1px solid rgba(255,255,255,0.08)', color: '#888' }}>
@@ -559,7 +559,7 @@ export const Landing: React.FC = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           {[
             { ref: stat1.ref, count: stat1.count, suffix: '', label: 'Projects Published', unit: '' },
             { ref: stat2.ref, count: stat2.count, suffix: '+', label: 'Users Surveyed', unit: '' },
@@ -569,7 +569,7 @@ export const Landing: React.FC = () => {
             <div
               key={i}
               ref={stat.ref}
-              className="reveal p-5 md:p-10 border text-center transition-all duration-300 hover:-translate-y-1"
+              className="reveal p-4 md:p-10 border text-center transition-all duration-300 hover:-translate-y-1"
               style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.06)', borderRadius: '24px' }}
               onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(204,255,0,0.2)')}
               onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)')}

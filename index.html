@@ -34,6 +34,7 @@
 
     html {
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     body {
@@ -300,6 +301,32 @@
         left: 50% !important;
         transform: translateX(-50%) !important;
         animation: none !important;
+      }
+    }
+
+    /* ═══════════════════════════════════
+       MOBILE OVERFLOW FIXES
+       ═══════════════════════════════════ */
+    @media (max-width: 768px) {
+      /* Prevent any horizontal scroll globally */
+      #root {
+        overflow-x: hidden;
+        max-width: 100vw;
+      }
+
+      /* Contain the spinning ring so it doesn't overflow */
+      .spin-slow {
+        display: none;
+      }
+
+      /* Experience card tags: allow wrapping */
+      .exp-tags {
+        flex-wrap: wrap;
+      }
+
+      /* Stats grid: smaller padding on mobile */
+      .stat-number {
+        font-size: 2rem !important;
       }
     }
 

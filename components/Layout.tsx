@@ -64,7 +64,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
   };
 
   return (
-    <div style={{ backgroundColor: '#000', color: '#fff', minHeight: '100vh' }} className="flex flex-col relative">
+    <div style={{ backgroundColor: '#000', color: '#fff', minHeight: '100vh', overflowX: 'hidden' }} className="flex flex-col relative">
 
       {/* ╔══════════════════════════════════════════╗
          ║  FLOATING PILL NAVBAR                    ║
