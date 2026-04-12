@@ -155,7 +155,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               borderBottomLeftRadius: '32px',
             }}
           >
-            <div className="flex flex-col h-full px-10 pt-28 pb-10">
+            <div className="flex flex-col h-full px-6 pt-24 pb-8 md:px-10">
               {/* Menu label */}
               <div className="flex items-center gap-2 mb-8">
                 <span className="w-2 h-2 rounded-full" style={{ backgroundColor: '#CCFF00' }} />
@@ -280,14 +280,14 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
          ╚══════════════════════════════════════════╝ */}
       <footer className="relative z-10 border-t overflow-hidden" style={{ backgroundColor: '#0a0a0a', borderColor: 'rgba(255,255,255,0.06)' }}>
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-16 md:py-24">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-8 mb-16">
 
             {/* Col 1 — Connect */}
             <div>
               <h4 className="text-base font-semibold mb-6" style={{ color: '#888' }}>Let's Connect</h4>
               <a
                 href="mailto:01rishiparmar@gmail.com"
-                className="text-lg font-medium transition-colors duration-200 block"
+                className="text-lg font-medium transition-colors duration-200 block break-all"
                 style={{ color: '#fff' }}
                 onMouseEnter={e => (e.currentTarget.style.color = '#CCFF00')}
                 onMouseLeave={e => (e.currentTarget.style.color = '#fff')}
@@ -364,7 +364,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
         </div>
 
         {/* Giant watermark text */}
-        <div className="footer-giant-text text-center w-full px-6 pb-8">
+        <div className="footer-giant-text text-center w-full px-6 pb-8 hidden md:block">
           Rishi
         </div>
       </footer>

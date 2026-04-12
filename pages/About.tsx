@@ -5,7 +5,7 @@ export const About: React.FC = () => {
     <div className="animate-fade-in">
 
       {/* HEADER */}
-      <section className="px-6 md:px-12 max-w-[1400px] mx-auto pt-32 pb-12">
+      <section className="px-6 md:px-12 max-w-[1400px] mx-auto pt-20 md:pt-32 pb-12">
         <div className="flex items-center gap-3 mb-8 anim-d1">
           <span className="w-2 h-2 rounded-full" style={{ backgroundColor: '#CCFF00' }} />
           <span className="text-sm font-semibold uppercase tracking-[0.2em]" style={{ color: '#888' }}>
@@ -28,13 +28,13 @@ export const About: React.FC = () => {
 
           {/* Left sticky */}
           <div className="lg:col-span-5">
-            <div className="sticky top-32 p-10 border" style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.06)', borderRadius: '24px' }}>
+            <div className="sticky top-32 p-6 md:p-10 border" style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.06)', borderRadius: '24px' }}>
               <p className="text-2xl md:text-3xl text-white font-medium leading-tight mb-6" style={{ fontFamily: "'Syne', sans-serif" }}>
                 "I don't just use tech, I feel the tech."
               </p>
               <div className="w-12 h-[3px] rounded-full mb-6" style={{ backgroundColor: '#CCFF00' }} />
               <p className="text-base leading-relaxed" style={{ color: '#888' }}>
-                I try to understand products from every angle — consumer, retailer, brand, and engineer. No single lens tells the full story.
+                I try to understand products from every angle: consumer, retailer, brand, and engineer. No single lens tells the full story.
               </p>
             </div>
           </div>
@@ -45,24 +45,24 @@ export const About: React.FC = () => {
               I'm <span className="text-white font-bold">Rishi</span>, an engineering student with a strong interest in product strategy, user behavior, and execution under real-world constraints.
             </p>
             <p>
-              I work on self-driven case studies and research across consumer tech, especially smartphones — covering portfolio structure, pricing trade-offs, software optimization, and market dynamics. My approach blends user experience, business reality, and engineering limitations rather than isolated feature thinking.
+              I work on self-driven case studies and research across consumer tech, especially smartphones, covering portfolio structure, pricing trade-offs, software optimization, and market dynamics. My approach blends user experience, business reality, and engineering limitations rather than isolated feature thinking.
             </p>
             <p>
-              I started this journey in July 2025 with zero industry connections and no formal guidance — just a conviction that building real work matters more than waiting for the perfect opportunity. Everything here is self-directed, self-executed, and honest about where I am in the process.
+              I started this in July 2025 with zero industry connections, no formal guidance, and no idea if it would lead anywhere. Everything here is self-directed and honest about where I am, not where I want people to think I am.
             </p>
 
             <div className="p-8 md:p-10 border-l-[3px]"
               style={{ backgroundColor: '#111', borderColor: '#CCFF00', borderRadius: '0 16px 16px 0' }}>
               <p className="font-medium text-white italic text-base">
-                This portfolio reflects how I think and work — not just polished outcomes, but honest problem-solving.
+                This portfolio reflects how I think and work, not just polished outcomes, but honest problem-solving.
               </p>
             </div>
 
             {/* Skills */}
             <div className="pt-8">
-              <h3 className="text-sm font-bold uppercase tracking-[0.2em] mb-6" style={{ color: '#555' }}>Core Focus</h3>
+              <h3 className="text-sm font-bold uppercase tracking-[0.2em] mb-6" style={{ color: '#777' }}>Core Focus</h3>
               <div className="flex flex-wrap gap-3">
-                {['Product Strategy', 'Market Dynamics', 'Execution', 'Systems Thinking'].map(skill => (
+                {['Consumer Behaviour', 'Retail Dynamics', 'Product Strategy', 'Field Research'].map(skill => (
                   <span key={skill}
                     className="px-5 py-2.5 rounded-full text-sm font-semibold uppercase tracking-wider border transition-all duration-200 cursor-default"
                     style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.06)', color: '#888' }}
@@ -82,7 +82,7 @@ export const About: React.FC = () => {
                 onMouseEnter={e => (e.currentTarget.style.color = '#CCFF00')}
                 onMouseLeave={e => (e.currentTarget.style.color = '#fff')}>
                 <span className="font-bold text-xl md:text-2xl" style={{ fontFamily: "'Syne', sans-serif" }}>
-                  Let's start a conversation
+                  Have thoughts on my work? Let's talk.
                 </span>
                 <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
               </a>
@@ -91,7 +91,7 @@ export const About: React.FC = () => {
         </div>
 
         {/* RESUME */}
-        <div className="p-10 md:p-16 flex flex-col xl:flex-row items-center justify-between gap-12 relative overflow-hidden border"
+        <div className="p-6 md:p-16 flex flex-col xl:flex-row items-center justify-between gap-12 relative overflow-hidden border"
           style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.06)', borderRadius: '32px' }}>
           <div className="absolute -right-20 -bottom-20 w-72 h-72 rounded-full blur-[100px] pointer-events-none" style={{ backgroundColor: 'rgba(204,255,0,0.04)' }} />
           <div className="relative z-10 max-w-3xl">

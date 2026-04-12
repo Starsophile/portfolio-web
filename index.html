@@ -293,6 +293,16 @@
       outline-offset: 2px;
     }
 
+    /* Rotating badge mobile fix */
+    @media (max-width: 640px) {
+      .rotating-badge {
+        bottom: -8px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        animation: none !important;
+      }
+    }
+
     /* Line clamp */
     .line-clamp-2 {
       display: -webkit-box;

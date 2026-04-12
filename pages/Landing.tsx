@@ -119,12 +119,12 @@ export const Landing: React.FC = () => {
     <div className="animate-fade-in" ref={revealRef}>
 
       {/* ╔══════════════════════════════════════════╗
-          ║  1. HERO — Full viewport                ║
+          ║  1. HERO - Full viewport                ║
           ╚══════════════════════════════════════════╝ */}
-      <section id="home" className="min-h-screen flex flex-col justify-center px-6 md:px-12 max-w-[1400px] mx-auto relative pt-24 pb-16 smoke-bg">
+      <section id="home" className="min-h-screen flex flex-col justify-center px-4 md:px-12 max-w-[1400px] mx-auto relative pt-24 pb-16 smoke-bg">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
 
-          {/* Left — Text */}
+          {/* Left - Text */}
           <div className="flex-1 z-10">
             <p className="text-base mb-6 anim-d1" style={{ color: '#888' }}>
               Hello <span className="font-bold" style={{ color: '#fff' }}>My Name</span> Is
@@ -134,7 +134,7 @@ export const Landing: React.FC = () => {
               className="font-extrabold text-white mb-6 anim-d2"
               style={{
                 fontFamily: "'Syne', sans-serif",
-                fontSize: 'clamp(4.5rem, 13vw, 10rem)',
+                fontSize: 'clamp(2.8rem, 11vw, 10rem)',
                 fontWeight: 800,
                 letterSpacing: '-0.03em',
                 lineHeight: 0.9,
@@ -148,15 +148,15 @@ export const Landing: React.FC = () => {
             <p className="text-lg md:text-xl mb-2 anim-d3" style={{ color: '#888' }}>
               I don't use the tech. I feel the tech.
             </p>
-            <p className="text-base mb-12 anim-d3" style={{ color: '#555' }}>
-              Product Researcher & Strategist — Consumer Tech
+            <p className="text-base mb-12 anim-d3" style={{ color: '#777' }}>
+              Product Researcher & Strategist, Consumer Tech
             </p>
 
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-4 anim-d4">
               <a
                 href="#work"
-                className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5"
                 style={{ backgroundColor: '#CCFF00', color: '#000' }}
                 onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#d4ff33')}
                 onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#CCFF00')}
@@ -165,23 +165,23 @@ export const Landing: React.FC = () => {
                 View My Works
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
               </a>
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-semibold text-sm border transition-all duration-300 hover:-translate-y-0.5"
+              <Link
+                to="/about"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold text-sm border transition-all duration-300 hover:-translate-y-0.5"
                 style={{ borderColor: 'rgba(255,255,255,0.15)', color: '#fff', backgroundColor: 'transparent' }}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = '#CCFF00'; e.currentTarget.style.color = '#CCFF00'; }}
                 onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; e.currentTarget.style.color = '#fff'; }}
                 id="hero-contact"
               >
-                Contact Me
+                About Me
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" /></svg>
-              </a>
+              </Link>
             </div>
           </div>
 
-          {/* Right — Portrait */}
-          <div className="flex-1 flex items-center justify-center w-full max-w-lg lg:max-w-xl anim-d5">
-            <div className="relative w-full" style={{ maxWidth: '480px' }}>
+          {/* Right - Portrait */}
+          <div className="flex-1 flex items-center justify-center w-full anim-d5">
+            <div className="relative w-full" style={{ maxWidth: 'min(320px, 80vw)' }}>
               {/* Rotating outer ring */}
               <div className="absolute inset-[-30px] spin-slow pointer-events-none">
                 <svg viewBox="0 0 540 540" className="w-full h-full" fill="none">
@@ -231,51 +231,37 @@ export const Landing: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="hidden md:flex items-center justify-between mt-auto pt-12 border-t anim-d5" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
-          <span className="text-sm" style={{ color: '#555' }}>
-            Scroll <strong style={{ color: '#888' }}>down</strong> ↓
-          </span>
-        </div>
       </section>
 
       {/* ╔══════════════════════════════════════════╗
           ║  2. EXPERIENCE CARDS                     ║
           ╚══════════════════════════════════════════╝ */}
-      <section id="experience" className="px-6 md:px-12 max-w-[1400px] mx-auto" style={{ paddingTop: '8rem', paddingBottom: '4rem' }}>
+      <section id="experience" className="px-4 md:px-12 max-w-[1400px] mx-auto" style={{ paddingTop: '8rem', paddingBottom: '4rem' }}>
         <div className="mb-12 reveal">
           <span className="text-sm font-semibold uppercase tracking-[0.2em] block mb-4" style={{ color: '#888' }}>
             Experience
           </span>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <h2 className="text-3xl md:text-5xl font-bold text-white" style={{ fontFamily: "'Syne', sans-serif" }}>
-              Making The World Better
+              Learning By
               <br />
-              <span style={{ color: '#555' }}>Through Product Thinking.</span>
+              <span style={{ color: '#777' }}>Doing.</span>
             </h2>
-            <a
-              href="https://www.linkedin.com/in/rishiparmar01/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-medium transition-colors duration-200"
-              style={{ color: '#888' }}
-              onMouseEnter={e => (e.currentTarget.style.color = '#CCFF00')}
-              onMouseLeave={e => (e.currentTarget.style.color = '#888')}
-            >
-              See my LinkedIn →
-            </a>
+            <p className="text-base md:text-lg max-w-lg" style={{ color: '#777' }}>
+              Not waiting for the perfect opportunity. Building, observing, and thinking, one project at a time.
+            </p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
-            { period: 'Ongoing', title: 'Self-Directed\nCase Studies', tags: ['Consumer Tech', 'Strategy'], num: '01' },
-            { period: '2025 — Present', title: 'Primary Field\nResearch', tags: ['Retail Visits', 'Observation'], num: '02' },
-            { period: '2025 — Present', title: 'Independent\nSurveys', tags: ['100+ Users', 'Behaviour'], num: '03' },
+            { period: 'Ongoing', title: 'Self-Directed\nResearch', tags: ['Consumer Tech', 'Smartphones'], num: '01' },
+            { period: '2025 – Present', title: 'Primary Field\nObservation', tags: ['Retail Visits', 'Surveys'], num: '02' },
+            { period: '2025 – Present', title: 'Independent\nCase Studies', tags: ['Strategy', 'Analysis'], num: '03' },
           ].map((card, i) => (
             <div
               key={card.num}
-              className={`reveal reveal-delay-${i + 1} p-8 border transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between min-h-[240px]`}
+              className={`reveal reveal-delay-${i + 1} p-5 md:p-8 border transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between min-h-[240px]`}
               style={{
                 backgroundColor: '#111',
                 borderColor: 'rgba(255,255,255,0.06)',
@@ -284,7 +270,7 @@ export const Landing: React.FC = () => {
               onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(204,255,0,0.3)')}
               onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)')}
             >
-              <p className="text-base mb-6" style={{ color: '#555' }}>{card.period}</p>
+              <p className="text-base mb-6" style={{ color: '#777' }}>{card.period}</p>
               <div>
                 <h3 className="text-2xl font-bold text-white mb-4 whitespace-pre-line" style={{ fontFamily: "'Syne', sans-serif", lineHeight: 1.1 }}>
                   {card.title}
@@ -345,31 +331,31 @@ export const Landing: React.FC = () => {
       {/* ╔══════════════════════════════════════════╗
           ║  4. APPROACH (Services)                  ║
           ╚══════════════════════════════════════════╝ */}
-      <section id="approach" className="px-6 md:px-12 max-w-[1400px] mx-auto" style={{ paddingTop: '8rem', paddingBottom: '8rem' }}>
+      <section id="approach" className="px-4 md:px-12 max-w-[1400px] mx-auto" style={{ paddingTop: '8rem', paddingBottom: '8rem' }}>
         <div className="mb-14 reveal">
           <span className="text-sm font-semibold uppercase tracking-[0.2em] block mb-4" style={{ color: '#888' }}>
-            Services
+            How I Think
           </span>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <h2 className="text-3xl md:text-5xl font-bold text-white" style={{ fontFamily: "'Syne', sans-serif" }}>
               How I See Products
             </h2>
-            <p className="text-base md:text-lg max-w-md" style={{ color: '#555' }}>
-              I break down product decisions through the lens of market reality, user behaviour, and engineering constraints.
+            <p className="text-base md:text-lg max-w-md" style={{ color: '#777' }}>
+              I'm not an expert. I'm someone who takes products seriously enough to go beyond the surface. Here's what that looks like in practice.
             </p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {[
-            { num: '01.', title: 'Market Analysis', sub: 'COMPETITIVE LANDSCAPE', desc: 'Mapping competitive landscapes, pricing patterns, and opportunity gaps across consumer tech segments. Understanding where brands win and why they lose.' },
-            { num: '02.', title: 'Product Strategy', sub: 'POSITIONING & ROADMAPS', desc: 'Defining positioning, trade-offs, and roadmaps that balance user needs with business constraints. Building clarity from ambiguity.' },
-            { num: '03.', title: 'Consumer Behaviour', sub: 'USER RESEARCH', desc: 'Understanding what drives purchase decisions, retention, and trust beyond specification marketing. Real insights from real users.' },
-            { num: '04.', title: 'Competitive Research', sub: 'MARKET INTELLIGENCE', desc: 'Tracking how brands position, price, and compete for consumer attention across every segment from budget to flagship.' },
+            { num: '01.', title: 'Market Analysis', sub: 'COMPETITIVE LANDSCAPE', desc: 'Mapping how brands compete, where gaps exist, and why certain players win in specific segments. I look for patterns that spec sheets don\'t reveal.' },
+            { num: '02.', title: 'Product Strategy', sub: 'POSITIONING & ROADMAPS', desc: 'Understanding the trade-offs behind product decisions: what gets prioritized, what gets cut, and why clarity matters more than features.' },
+            { num: '03.', title: 'Consumer Behaviour', sub: 'USER RESEARCH', desc: 'Going beyond surveys to understand what actually drives purchase decisions: trust, perception, word of mouth, and lived experience.' },
+            { num: '04.', title: 'Competitive Research', sub: 'MARKET INTELLIGENCE', desc: 'Tracking how brands position themselves differently across price points, channels, and consumer segments, and what that reveals about their priorities.' },
           ].map((card, i) => (
             <div
               key={card.num}
-              className={`reveal reveal-delay-${i + 1} group p-8 md:p-10 border transition-all duration-300 hover:-translate-y-1`}
+              className={`reveal reveal-delay-${i + 1} group p-6 md:p-10 border transition-all duration-300 hover:-translate-y-1`}
               style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.06)', borderRadius: '24px' }}
               onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(204,255,0,0.25)')}
               onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)')}
@@ -378,7 +364,7 @@ export const Landing: React.FC = () => {
                 <span className="text-sm font-bold" style={{ color: '#CCFF00', fontFamily: "'Syne', sans-serif" }}>
                   {card.num}
                 </span>
-                <span className="text-xs font-semibold uppercase tracking-[0.15em] px-3 py-1.5 rounded-full" style={{ color: '#555', border: '1px solid rgba(255,255,255,0.06)' }}>
+                <span className="text-xs font-semibold uppercase tracking-[0.15em] px-3 py-1.5 rounded-full" style={{ color: '#777', border: '1px solid rgba(255,255,255,0.06)' }}>
                   {card.sub}
                 </span>
               </div>
@@ -393,7 +379,7 @@ export const Landing: React.FC = () => {
         </div>
 
         <div className="mt-8 text-center reveal">
-          <p className="text-base mb-4" style={{ color: '#555' }}>For specific requests, please contact me</p>
+          <p className="text-base mb-4" style={{ color: '#777' }}>If any of this resonates, or if you think I'm wrong about something, I'd love to hear from you.</p>
           <a
             href="#contact"
             className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5"
@@ -410,10 +396,10 @@ export const Landing: React.FC = () => {
       {/* ╔══════════════════════════════════════════╗
           ║  5. WHAT YOU GET                         ║
           ╚══════════════════════════════════════════╝ */}
-      <section className="px-6 md:px-12 max-w-[1400px] mx-auto" style={{ paddingBottom: '8rem' }}>
+      <section className="px-4 md:px-12 max-w-[1400px] mx-auto" style={{ paddingBottom: '8rem' }}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center reveal">
           {/* Left — Abstract Visual */}
-          <div className="flex items-center justify-center p-8 md:p-12 relative overflow-hidden" style={{ backgroundColor: '#111', borderRadius: '32px', border: '1px solid rgba(255,255,255,0.06)', minHeight: '400px' }}>
+          <div className="hidden md:flex items-center justify-center p-5 md:p-12 relative overflow-hidden" style={{ backgroundColor: '#111', borderRadius: '32px', border: '1px solid rgba(255,255,255,0.06)', minHeight: '400px' }}>
             <div className="relative w-full max-w-sm aspect-square">
               {/* Concentric circles */}
               <svg viewBox="0 0 400 400" className="w-full h-full" fill="none">
@@ -451,18 +437,18 @@ export const Landing: React.FC = () => {
               <span className="text-sm font-semibold uppercase tracking-[0.15em]" style={{ color: '#CCFF00' }}>You will get</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4" style={{ fontFamily: "'Syne', sans-serif" }}>
-              All-in-one<br />Approach
+              What I<br />Actually Do
             </h2>
-            <p className="text-base md:text-lg mb-10 leading-relaxed" style={{ color: '#555' }}>
-              Transforming ambiguity into actionable product insight:
+            <p className="text-base md:text-lg mb-10 leading-relaxed" style={{ color: '#777' }}>
+              Honest, ground-level research, not polished decks built from other people's reports.
             </p>
             <div className="space-y-5">
               {[
-                { icon: '◆', text: 'Deep market & competitive analysis with data-backed insights' },
-                { icon: '◆', text: 'User behaviour research through surveys & real-world observation' },
-                { icon: '◆', text: 'Strategic recommendations grounded in business constraints' },
-                { icon: '◆', text: 'Clear, structured case studies that show the thinking process' },
-                { icon: '◆', text: 'Honest problem-solving — not just polished outcomes' },
+                { icon: '◆', text: 'Primary field research: retail visits, user surveys, direct observation' },
+                { icon: '◆', text: 'Multi-lens analysis: consumer, retailer, brand, and engineering perspectives' },
+                { icon: '◆', text: 'Honest documentation of gaps and limitations alongside findings' },
+                { icon: '◆', text: 'Structured thinking that shows the process, not just the conclusion' },
+                { icon: '◆', text: 'Work that is self-directed, self-funded, and built from scratch' },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-4 group">
                   <span className="text-sm mt-1 transition-colors duration-200" style={{ color: '#CCFF00' }}>{item.icon}</span>
@@ -479,7 +465,7 @@ export const Landing: React.FC = () => {
       {/* ╔══════════════════════════════════════════╗
           ║  6. SELECTED WORK                        ║
           ╚══════════════════════════════════════════╝ */}
-      <section id="work" className="px-6 md:px-12 max-w-[1400px] mx-auto" style={{ paddingTop: '4rem', paddingBottom: '8rem' }}>
+      <section id="work" className="px-4 md:px-12 max-w-[1400px] mx-auto" style={{ paddingTop: '4rem', paddingBottom: '8rem' }}>
         <div className="flex flex-col md:flex-row items-end justify-between mb-14 gap-4 reveal">
           <div>
             <span className="text-sm font-semibold uppercase tracking-[0.2em] block mb-4" style={{ color: '#888' }}>
@@ -517,7 +503,7 @@ export const Landing: React.FC = () => {
                       {project.category}
                     </span>
                   </div>
-                  <span className="text-sm font-mono" style={{ color: '#555' }}>Date: {project.date}</span>
+                  <span className="text-sm font-mono" style={{ color: '#777' }}>Date: {project.date}</span>
                 </div>
 
                 {/* Title */}
@@ -536,7 +522,7 @@ export const Landing: React.FC = () => {
                 </p>
 
                 {/* Tags bottom */}
-                <div className="flex items-center justify-between mt-auto">
+                <div className="flex flex-wrap items-center justify-between gap-2 mt-auto">
                   <div className="flex gap-2">
                     {project.tags.slice(0, 3).map(tag => (
                       <span key={tag} className="px-3 py-1.5 rounded-full text-sm"
@@ -561,21 +547,21 @@ export const Landing: React.FC = () => {
       {/* ╔══════════════════════════════════════════╗
           ║  7. NUMERIC STATS                        ║
           ╚══════════════════════════════════════════╝ */}
-      <section id="stats" className="px-6 md:px-12 max-w-[1400px] mx-auto" style={{ paddingBottom: '8rem' }}>
+      <section id="stats" className="px-4 md:px-12 max-w-[1400px] mx-auto" style={{ paddingBottom: '8rem' }}>
         <div className="mb-12 reveal">
           <span className="text-sm font-semibold uppercase tracking-[0.2em] block mb-4" style={{ color: '#888' }}>
             Numeric
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-white" style={{ fontFamily: "'Syne', sans-serif" }}>
-            Making Your World Better
+            Where I Stand
             <br />
-            <span style={{ color: '#555' }}>Through Product Research.</span>
+            <span style={{ color: '#777' }}>Right Now.</span>
           </h2>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { ref: stat1.ref, count: stat1.count, suffix: '', label: 'Case Studies Published', unit: '' },
+            { ref: stat1.ref, count: stat1.count, suffix: '', label: 'Projects Published', unit: '' },
             { ref: stat2.ref, count: stat2.count, suffix: '+', label: 'Users Surveyed', unit: '' },
             { ref: stat3.ref, count: stat3.count, suffix: '+', label: 'Retail Stores Visited', unit: '' },
             { ref: stat4.ref, count: stat4.count, suffix: '+', label: 'Industry Interactions', unit: '' },
@@ -583,12 +569,12 @@ export const Landing: React.FC = () => {
             <div
               key={i}
               ref={stat.ref}
-              className="reveal p-8 md:p-10 border text-center transition-all duration-300 hover:-translate-y-1"
+              className="reveal p-5 md:p-10 border text-center transition-all duration-300 hover:-translate-y-1"
               style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.06)', borderRadius: '24px' }}
               onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(204,255,0,0.2)')}
               onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)')}
             >
-              <div className="stat-number text-5xl md:text-6xl font-extrabold mb-3" style={{ color: '#CCFF00', fontFamily: "'Syne', sans-serif" }}>
+              <div className="stat-number text-4xl md:text-6xl font-extrabold mb-3" style={{ color: '#CCFF00', fontFamily: "'Syne', sans-serif" }}>
                 {stat.count}{stat.suffix}
               </div>
               <p className="text-base font-medium" style={{ color: '#888' }}>{stat.label}</p>
@@ -597,76 +583,11 @@ export const Landing: React.FC = () => {
         </div>
       </section>
 
-      {/* ╔══════════════════════════════════════════╗
-          ║  8. THINKING OUT LOUD                    ║
-          ╚══════════════════════════════════════════╝ */}
-      <section id="insights" className="px-6 md:px-12 max-w-[1400px] mx-auto" style={{ paddingBottom: '8rem' }}>
-        <div className="mb-14 reveal">
-          <span className="text-sm font-semibold uppercase tracking-[0.2em] block mb-4" style={{ color: '#888' }}>
-            Insights
-          </span>
-          <h2 className="text-4xl md:text-6xl font-bold text-white" style={{ fontFamily: "'Syne', sans-serif" }}>
-            Thinking Out Loud
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {[
-            {
-              date: 'Mar 2026',
-              title: 'Why spec-sheet marketing is failing',
-              insight: 'Consumers don\'t benchmark their phones — they feel them. The gap between marketed specs and lived experience is where trust erodes.',
-            },
-            {
-              date: 'Feb 2026',
-              title: 'The ₹15k–20k vacuum in India',
-              insight: 'This price segment has high demand but zero loyalty. The first brand to deliver consistency here will own the market.',
-            },
-            {
-              date: 'Jan 2026',
-              title: 'Samsung\'s real competition isn\'t Apple',
-              insight: 'In the mid-range, Samsung isn\'t losing to Apple — it\'s losing to Vivo and Xiaomi. Different problem, different fix.',
-            },
-          ].map((card, i) => (
-            <div
-              key={card.title}
-              className={`reveal reveal-delay-${i + 1} group flex flex-col justify-between p-8 md:p-10 border transition-all duration-300 hover:-translate-y-1`}
-              style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.06)', borderRadius: '24px' }}
-              onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(204,255,0,0.2)')}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)')}
-            >
-              <div>
-                <span className="text-sm font-mono block mb-5" style={{ color: '#555' }}>{card.date}</span>
-                <h4 className="text-xl font-bold text-white mb-3" style={{ fontFamily: "'Syne', sans-serif" }}>
-                  {card.title}
-                </h4>
-                <p className="text-base leading-relaxed mb-8" style={{ color: '#888' }}>
-                  {card.insight}
-                </p>
-              </div>
-              <a
-                href="https://www.linkedin.com/in/rishiparmar01/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-semibold transition-colors duration-200"
-                style={{ color: '#CCFF00' }}
-                onMouseEnter={e => (e.currentTarget.style.color = '#d4ff33')}
-                onMouseLeave={e => (e.currentTarget.style.color = '#CCFF00')}
-              >
-                Read on LinkedIn
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                </svg>
-              </a>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* ╔══════════════════════════════════════════╗
           ║  9. FAQs                                 ║
           ╚══════════════════════════════════════════╝ */}
-      <section id="faq" className="px-6 md:px-12 max-w-[1400px] mx-auto" style={{ paddingBottom: '8rem' }}>
+      <section id="faq" className="px-4 md:px-12 max-w-[1400px] mx-auto" style={{ paddingBottom: '8rem' }}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           {/* Left */}
           <div className="reveal">
@@ -676,7 +597,7 @@ export const Landing: React.FC = () => {
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6" style={{ fontFamily: "'Syne', sans-serif" }}>
               FAQs
             </h2>
-            <p className="text-base leading-relaxed mb-8" style={{ color: '#555' }}>
+            <p className="text-base leading-relaxed mb-8" style={{ color: '#777' }}>
               Do you have any other questions?
             </p>
             <a
@@ -695,15 +616,15 @@ export const Landing: React.FC = () => {
           <div className="reveal reveal-delay-1">
             <FaqItem
               q="What kind of work do you do?"
-              a="I specialize in product research, market analysis, and consumer behavior studies — primarily in the smartphone and consumer tech space. My work involves case studies, competitive analysis, and user surveys."
+              a="I specialize in product research, market analysis, and consumer behavior studies, primarily in the smartphone and consumer tech space. My work involves case studies, competitive analysis, and user surveys."
             />
             <FaqItem
               q="Are you open to feedback on your work?"
-              a="Absolutely — and I actively seek it. I'm at an early stage of my journey and I believe honest feedback from practitioners matters more than validation. If you've worked in consumer tech or distribution, I'd genuinely love your perspective."
+              a="Absolutely, and I actively seek it. I'm at an early stage and honest feedback from practitioners matters more than validation. If you've worked in consumer tech or distribution, I'd genuinely love your perspective."
             />
             <FaqItem
-              q="What tools do you use?"
-              a="I use a combination of Google Forms for surveys, spreadsheets for data analysis, and various research frameworks. For presentations, I use Figma and standard tools. My approach is tool-agnostic — the thinking matters more than the tools."
+              q="What drives your interest in this domain?"
+              a="Genuine curiosity about why products succeed or fail in the real world, not on paper. I find the gap between what brands claim and what consumers actually experience more interesting than any spec sheet."
             />
             <FaqItem
               q="How do you approach a new project?"
@@ -720,9 +641,9 @@ export const Landing: React.FC = () => {
       {/* ╔══════════════════════════════════════════╗
           ║  10. GET IN TOUCH CTA                    ║
           ╚══════════════════════════════════════════╝ */}
-      <section id="contact" className="px-6 md:px-12 max-w-[1400px] mx-auto" style={{ paddingBottom: '8rem' }}>
+      <section id="contact" className="px-4 md:px-12 max-w-[1400px] mx-auto" style={{ paddingBottom: '8rem' }}>
         <div
-          className="p-12 md:p-20 text-center border relative overflow-hidden reveal"
+          className="p-8 md:p-20 text-center border relative overflow-hidden reveal"
           style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.06)', borderRadius: '32px' }}
         >
           {/* Glow */}
@@ -732,11 +653,11 @@ export const Landing: React.FC = () => {
             Contact Me
           </span>
           <h2 className="text-4xl md:text-7xl font-extrabold text-white mb-4 relative z-10" style={{ fontFamily: "'Syne', sans-serif" }}>
-            Let's Work<br />
-            <span style={{ color: '#CCFF00' }}>Together</span>
+            Let's<br />
+            <span style={{ color: '#CCFF00' }}>Talk.</span>
           </h2>
-          <p className="text-base md:text-lg mb-8 relative z-10" style={{ color: '#555' }}>
-            Want to discuss ideas, challenge my thinking, or just talk consumer tech? I'm always up for a real conversation.
+          <p className="text-base md:text-lg mb-8 relative z-10" style={{ color: '#777' }}>
+            Want to challenge my thinking, share a perspective, or just talk consumer tech? I'm always up for a real conversation.
           </p>
           <a
             href="mailto:01rishiparmar@gmail.com"
@@ -745,7 +666,7 @@ export const Landing: React.FC = () => {
             onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#d4ff33')}
             onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#CCFF00')}
           >
-            Mail me at: 01rishiparmar@gmail.com
+            <span className="hidden md:inline">Mail me at: 01rishiparmar@gmail.com</span><span className="md:hidden">Get In Touch</span>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" /></svg>
           </a>
         </div>

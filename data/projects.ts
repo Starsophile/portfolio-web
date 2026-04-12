@@ -46,7 +46,7 @@ export const projects: Project[] = [
         ]
       },
       {
-        title: '03A. Phase 1 — Experience Stabilization (0–6 Months)',
+        title: '03A. Phase 1: Experience Stabilization (0–6 Months)',
         type: 'grid',
         content: 'Phase 1 focuses on fixing perception, stability, and trust without changing hardware, pricing, or portfolio structure.',
         items: [
@@ -56,14 +56,14 @@ export const projects: Project[] = [
         ]
       },
       {
-        title: '03B. Phase 2 — Portfolio Role Clarity (6–18 Months)',
+        title: '03B. Phase 2: Portfolio Role Clarity (6–18 Months)',
         type: 'grid',
-        content: 'Phase 2 restructures roles, not products — aligning each series with a single, clear job.',
+        content: 'Phase 2 restructures roles, not products, aligning each series with a single, clear job.',
         items: [
-          { heading: 'A Series — Retail Reliability Line', body: '• Ultra-budget to lower mid-range\n• First-time buyers and offline customers\n• Simple features, predictable experience, high margins' },
-          { heading: 'M Series — The Core Daily Driver', body: '• Mid-range sweet spot (₹15k–₹35k)\n• Balanced performance, longevity, clean software\n• Online + offline parity' },
-          { heading: 'F Series — Online Tactical Experiments', body: '• Under ₹15k experimentation\n• No retail pressure, fast refresh cycles\n• Used for demand testing and price aggression' },
-          { heading: 'FE Series — Aspirational Bridge', body: '• Flagship DNA at accessible pricing\n• Camera + performance focus\n• Clear step-up from M series' }
+          { heading: 'A Series: Retail Reliability Line', body: '• Ultra-budget to lower mid-range\n• First-time buyers and offline customers\n• Simple features, predictable experience, high margins' },
+          { heading: 'M Series: The Core Daily Driver', body: '• Mid-range sweet spot (₹15k–₹35k)\n• Balanced performance, longevity, clean software\n• Online + offline parity' },
+          { heading: 'F Series: Online Tactical Experiments', body: '• Under ₹15k experimentation\n• No retail pressure, fast refresh cycles\n• Used for demand testing and price aggression' },
+          { heading: 'FE Series: Aspirational Bridge', body: '• Flagship DNA at accessible pricing\n• Camera + performance focus\n• Clear step-up from M series' }
         ]
       },
       {
