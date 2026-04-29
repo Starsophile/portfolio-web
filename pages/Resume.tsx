@@ -41,7 +41,7 @@ export const Resume: React.FC = () => {
         <header className="border-b-2 border-black pb-8 mb-12 flex justify-between items-end">
           <div>
             <h1 className="text-5xl font-black uppercase tracking-tighter mb-2">Rishi</h1>
-            <p className="text-xl font-medium text-zinc-600">Product & Consumer Tech Analyst — CSE Undergraduate</p>
+            <p className="text-xl font-medium text-zinc-600">Product & Consumer Tech Analyst - CSE Undergraduate</p>
           </div>
           <div className="text-right text-sm font-medium leading-relaxed">
             <p>Vadodara, India</p>
@@ -62,10 +62,10 @@ export const Resume: React.FC = () => {
           <h2 className="text-xs font-black uppercase tracking-widest border-b border-zinc-200 pb-2 mb-4">Education</h2>
           <div className="flex justify-between items-baseline">
             <div>
-              <h3 className="font-bold text-lg">Bachelor of Technology — Computer Science Engineering</h3>
+              <h3 className="font-bold text-lg">Bachelor of Technology - Computer Science Engineering</h3>
               <p className="text-sm text-zinc-600">ITM Vocational University</p>
             </div>
-            <span className="text-sm font-medium text-zinc-500">2025 — 2029 (Expected)</span>
+            <span className="text-sm font-medium text-zinc-500">2025 - 2029 (Expected)</span>
           </div>
         </section>
 
